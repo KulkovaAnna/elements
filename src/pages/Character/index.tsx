@@ -1,7 +1,9 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Character } from 'types/models';
+import { useQuery } from '@apollo/client';
+import { GET_CHARACTER_BY_ID } from 'graphql/queries';
+import React, { FC, useEffect } from 'react';
 import { ReactImageGalleryItem } from 'react-image-gallery';
+import { useParams } from 'react-router-dom';
+import { GetCharacterByIdInput, GetCharacterByIdResponse } from 'types/graphql';
 import {
   Container,
   Description,
@@ -13,23 +15,20 @@ import {
   Title,
   TitleWrapper,
 } from './styles';
-import CharacterClient from 'client/CharacterClient';
 
 type Props = {};
 
 const images: ReactImageGalleryItem[] = [];
 
 const CharacterPage: FC<Props> = () => {
-  const [heroInfo, setHeroInfo] = useState<Character | null>(null);
-  const story = heroInfo?.story?.split('\\n');
-  const client = useMemo(() => new CharacterClient(), []);
-  const params = useParams();
+  const { id } = useParams();
+  const { data } = useQuery<GetCharacterByIdResponse, GetCharacterByIdInput>(
+    GET_CHARACTER_BY_ID,
+    { variables: { id: Number(id) } }
+  );
+  const heroInfo = data?.getCharacterById;
 
-  useEffect(() => {
-    if (params.id) {
-      client.getOne(params.id).then(setHeroInfo);
-    }
-  }, [client, params]);
+  const story = heroInfo?.story?.split('\\n');
 
   useEffect(() => {
     if (heroInfo?.hero_image) {

@@ -7,7 +7,7 @@ export enum Race {
 }
 
 export type Character = {
-  id: string;
+  id: number;
   name?: string;
   description?: string;
   story?: string;
