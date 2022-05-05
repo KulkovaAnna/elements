@@ -1,0 +1,27 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 70px;
+  border-bottom: 1px solid black;
+}
+
+.header_link {
+  text-decoration: none;
+  height: 100%;
+  width: 15%;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid black;
+}
+
+.header_link:last-child {
+  border-right: none;
+}
+
+.header_link__main {
+  font-size: 34pt;
+}
