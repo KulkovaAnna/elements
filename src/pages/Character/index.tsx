@@ -43,7 +43,9 @@ const CharacterPage: FC<Props> = () => {
     <Container>
       <HalfBlock>
         <Name>{heroInfo?.name}</Name>
-        <HeroImage src={heroInfo?.hero_image} />
+        <HeroImage
+          src={`${process.env.REACT_APP_STORAGE_URL}/${heroInfo?.hero_image}`}
+        />
       </HalfBlock>
       <RightBlock>
         <TitleWrapper>
