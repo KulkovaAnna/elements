@@ -1,23 +1,18 @@
-import CharacterClient from 'client/CharacterClient';
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_CHARACTERS } from 'graphql/queries';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Character } from 'types/models';
+import { GetCharactersResponse } from 'types/graphql';
 import './styles.css';
 
 type Props = {};
 
 const CharacterList: FC<Props> = () => {
-  const client = useMemo(() => new CharacterClient(), []);
-  const [characters, setCharacters] = useState<Character[]>([]);
-
-  useEffect(() => {
-    client.getAll().then(setCharacters);
-  }, [client]);
-
+  const { data } = useQuery<GetCharactersResponse>(GET_CHARACTERS);
   return (
     <div>
       <ul>
-        {characters?.map?.((hero) => {
+        {data?.getCharacters?.map?.((hero: any) => {
           return (
             <li key={hero.id}>
               <Link to={`character/${hero.id}`}>{hero.name}</Link>

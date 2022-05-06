@@ -43,6 +43,7 @@ export const Name = styled.p({
   lineHeight: 0.5,
   marginBottom: 50,
   marginLeft: '10%',
+  fontFamily: "'Playfair Display', -apple-system, BlinkMacSystemFont",
 });
 
 export const HeroImage = styled.img({
@@ -57,13 +58,11 @@ export const HeroImage = styled.img({
 });
 
 export const Description = styled.p({
-  fontSize: 20,
+  fontSize: 18,
   width: '80%',
   fontWeight: '600',
-  border: '3px double brown',
-  padding: 5,
-  color: '#333',
   marginBottom: 15,
+  lineHeight: 1.3,
   [MQ_MOBILE]: {
     width: '100%',
     paddingRight: 20,
@@ -71,9 +70,10 @@ export const Description = styled.p({
 });
 
 export const Paragraph = styled.p({
-  fontSize: 16,
+  fontSize: 20,
   width: '80%',
   marginBottom: 15,
+  lineHeight: 1.3,
   [MQ_MOBILE]: {
     width: '100%',
     paddingRight: 20,
@@ -81,9 +81,10 @@ export const Paragraph = styled.p({
 });
 
 export const Title = styled.p({
-  fontSize: 18,
+  fontSize: 26,
   fontWeight: '600',
   marginBottom: 15,
+  fontFamily: "'Playfair Display', -apple-system, BlinkMacSystemFont",
 });
 
 export const TitleWrapper = styled.div({
