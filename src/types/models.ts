@@ -16,3 +16,19 @@ export type Character = {
   race?: Race;
   full_name?: string;
 };
+
+export type User = {
+  id: number;
+  email: string;
+  isAdmin: boolean;
+  password: string;
+};
+
+export type PublicUser = Omit<User, 'id'>;
+
+export type Chapter = {
+  id: number;
+  order: number;
+  title?: string;
+  content?: string;
+};

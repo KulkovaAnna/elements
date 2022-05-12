@@ -22,3 +22,31 @@ export const GET_CHARACTER_BY_ID = gql`
     }
   }
 `;
+
+export const GET_CONTENTS = gql`
+  query getChapters {
+    getChapters {
+      chapters {
+        id
+        title
+        order
+      }
+    }
+  }
+`;
+
+export const GET_CHAPTER_BY_ORDER = gql`
+  query getNthChapter($order: Int!) {
+    getNthChapter(order: $order) {
+      chapter {
+        id
+        title
+        content
+        order
+      }
+      next
+      prev
+      total
+    }
+  }
+`;
