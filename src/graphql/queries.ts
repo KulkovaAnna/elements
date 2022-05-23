@@ -18,7 +18,16 @@ export const GET_CHARACTER_BY_ID = gql`
       description
       hero_image
       full_name
-      images
+      sex
+      race
+      birth_date
+      death_date
+      family {
+        id
+        name
+        related_as
+        relative_id
+      }
     }
   }
 `;

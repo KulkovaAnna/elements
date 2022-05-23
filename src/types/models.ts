@@ -6,15 +6,54 @@ export enum Race {
   verwolf = 'verwolf',
 }
 
+export enum Sex {
+  male = 'male',
+  female = 'female',
+  other = 'other',
+}
+
+export enum Relationship {
+  sister = 'sister',
+  brother = 'brother',
+  mother = 'mother',
+  father = 'father',
+  wife = 'wife',
+  husband = 'husband',
+  son = 'son',
+  daughter = 'daughter',
+  grandmother = 'grandmother',
+  grandfather = 'grandfather',
+  grandson = 'grandson',
+  granddaughter = 'granddaughter',
+  uncle = 'uncle',
+  aunt = 'aunt',
+  nephew = 'nephew',
+  niece = 'niece',
+  stepmother = 'stepmother',
+  stepfather = 'stepfather',
+  stepson = 'stepson',
+  stepdaughter = 'stepdaughter',
+}
+
+export type Family = {
+  id: number;
+  relative_id: number;
+  name?: string;
+  related_as?: Relationship;
+};
+
 export type Character = {
   id: number;
   name?: string;
   description?: string;
   story?: string;
   hero_image?: string;
-  images?: string[];
   race?: Race;
   full_name?: string;
+  sex?: Sex;
+  birth_date?: number;
+  death_date?: number;
+  family?: Family[];
 };
 
 export type User = {

@@ -16,7 +16,7 @@ const Contents: FC<Props> = () => {
           .map?.((chapter) => {
             return (
               <li key={chapter.id}>
-                <Link to={`chapter/${chapter.order}`}>{chapter.title}</Link>
+                <Link to={`${chapter.order}`}>{chapter.title}</Link>
               </li>
             );
           })}

@@ -7,10 +7,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/character-list" element={<CharacterList />} />
-      <Route path="/character-list/character/:id" element={<Character />} />
+      <Route path="/characters" element={<CharacterList />} />
+      <Route path="/characters/:id" element={<Character />} />
       <Route path="/contents" element={<Contents />} />
-      <Route path="/contents/chapter/:order" element={<Chapter />} />
+      <Route path="/contents/:order" element={<Chapter />} />
     </Routes>
   );
 }

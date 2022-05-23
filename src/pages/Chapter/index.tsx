@@ -40,7 +40,7 @@ const CharacterPage: FC<Props> = () => {
           <Title>{chapterInfo?.title}</Title>
           <Navigation>
             {!!prevChapter && (
-              <Link to={`/contents/chapter/${prevChapter}`}>
+              <Link to={`/contents/${prevChapter}`}>
                 <FontAwesomeIcon
                   icon={solid('caret-left')}
                   color={MENU_ICON_COLOR}
@@ -54,7 +54,7 @@ const CharacterPage: FC<Props> = () => {
               />
             </Link>
             {!!nextChapter && (
-              <Link to={`/contents/chapter/${nextChapter}`}>
+              <Link to={`/contents/${nextChapter}`}>
                 <FontAwesomeIcon
                   icon={solid('caret-right')}
                   color={MENU_ICON_COLOR}

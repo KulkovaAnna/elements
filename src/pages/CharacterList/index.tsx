@@ -15,7 +15,7 @@ const CharacterList: FC<Props> = () => {
         {data?.getCharacters?.map?.((hero: any) => {
           return (
             <li key={hero.id}>
-              <Link to={`character/${hero.id}`}>{hero.name}</Link>
+              <Link to={`${hero.id}`}>{hero.name}</Link>
             </li>
           );
         })}

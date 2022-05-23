@@ -6,23 +6,23 @@ type Props = {};
 
 const Header: FC<Props> = () => {
   return (
-    <div className="header">
-      <Link className="header_link" to="#">
-        Бестиарий
-      </Link>
-      <Link className="header_link" to="/character-list">
-        Персонажи
-      </Link>
-      <Link to="/contents" className="header_link header_link__main">
-        Читать
-      </Link>
-      <Link className="header_link" to="#">
-        История
-      </Link>
-      <Link className="header_link" to="#">
-        Локации
-      </Link>
-    </div>
+    <ul className="header">
+      <li className="header_link">
+        <Link to="#">Бестиарий</Link>
+      </li>
+      <li className="header_link">
+        <Link to="/characters">Персонажи</Link>
+      </li>
+      <li className="header_link header_link__main">
+        <Link to="/contents">Читать</Link>
+      </li>
+      <li className="header_link">
+        <Link to="#">История</Link>
+      </li>
+      <li className="header_link">
+        <Link to="#">Локации</Link>
+      </li>
+    </ul>
   );
 };
 
