@@ -1,7 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Character, CharacterList, Contents, Home, Chapter } from './pages';
+import {
+  Character,
+  CharacterList,
+  Contents,
+  Home,
+  Chapter,
+  Page404,
+} from './pages';
 
 function App() {
   return (
@@ -11,6 +18,7 @@ function App() {
       <Route path="/characters/:id" element={<Character />} />
       <Route path="/contents" element={<Contents />} />
       <Route path="/contents/:order" element={<Chapter />} />
+      <Route path="/404" element={<Page404 />} />
     </Routes>
   );
 }
