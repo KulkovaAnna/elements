@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MENU_ICON_COLOR } from 'constants/colors';
 import { GET_CHAPTER_BY_ORDER } from 'graphql/queries';
 import React, { FC } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+
+import { useParams } from 'react-router-dom';
 import {
   GetChapterByOrderInput,
   GetChapterByOrderResponse,
@@ -12,6 +14,7 @@ import {
 import {
   Block,
   Container,
+  MenuLink,
   Navigation,
   Paragraph,
   Title,
@@ -32,7 +35,6 @@ const CharacterPage: FC<Props> = () => {
     prev: prevChapter,
   } = data?.getNthChapter ?? {};
 
-  const paragraphs = chapterInfo?.content?.split('\\n');
   return (
     <Container>
       <Block>
@@ -40,32 +42,36 @@ const CharacterPage: FC<Props> = () => {
           <Title>{chapterInfo?.title}</Title>
           <Navigation>
             {!!prevChapter && (
-              <Link to={`/contents/${prevChapter}`}>
+              <MenuLink to={`/contents/${prevChapter}`}>
                 <FontAwesomeIcon
                   icon={solid('caret-left')}
                   color={MENU_ICON_COLOR}
                 />
-              </Link>
+              </MenuLink>
             )}
-            <Link to={`/contents`}>
+            <MenuLink to={`/contents`}>
               <FontAwesomeIcon
                 icon={solid('book-open')}
                 color={MENU_ICON_COLOR}
               />
-            </Link>
+            </MenuLink>
             {!!nextChapter && (
-              <Link to={`/contents/${nextChapter}`}>
+              <MenuLink to={`/contents/${nextChapter}`}>
                 <FontAwesomeIcon
                   icon={solid('caret-right')}
                   color={MENU_ICON_COLOR}
                 />
-              </Link>
+              </MenuLink>
             )}
           </Navigation>
         </TitleWrapper>
-        {paragraphs?.map((p, index) => (
-          <Paragraph key={index}>{p}</Paragraph>
-        ))}
+        <ReactMarkdown
+          components={{
+            p: Paragraph as any,
+          }}
+        >
+          {chapterInfo?.content ?? ''}
+        </ReactMarkdown>
       </Block>
     </Container>
   );

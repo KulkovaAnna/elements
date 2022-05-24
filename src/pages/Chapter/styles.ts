@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
+import { MENU_ICON_COLOR } from 'constants/colors';
 import { MQ_MOBILE } from 'constants/media';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.article({
   display: 'flex',
@@ -53,5 +55,11 @@ export const Navigation = styled.div({
   paddingRight: 16,
   '& > *': {
     marginLeft: 5,
+  },
+});
+
+export const MenuLink = styled(Link)({
+  '*': {
+    color: MENU_ICON_COLOR,
   },
 });
