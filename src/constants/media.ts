@@ -1,4 +1,4 @@
-export const MQ_MOBILE = '@media (min-width: 375px) and (max-width: 768px)';
+export const MQ_MOBILE = '@media (max-width: 768px)';
 export const MQ_TABLET = '@media (max-width: 1024px)';
 export const MQ_DESKTOP = '@media (min-width: 1024px)';
 

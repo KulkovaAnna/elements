@@ -1,18 +1,16 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FC } from 'react';
+import { ContentsItem } from 'components/Contents';
+import { FC, HTMLAttributes } from 'react';
 import { Container, Link } from './styles';
 
-interface Props {
-  links: {
-    title: string;
-    to: string;
-  }[];
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  links: ContentsItem[];
 }
 
-const NavHeader: FC<Props> = ({ links }) => {
+const NavHeader: FC<Props> = ({ links, ...rest }) => {
   return (
-    <Container>
+    <Container {...rest}>
       <Link to="/">
         <FontAwesomeIcon icon={solid('home')} />
       </Link>

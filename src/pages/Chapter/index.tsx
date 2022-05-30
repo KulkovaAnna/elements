@@ -1,79 +1,47 @@
 import { useQuery } from '@apollo/client';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { MENU_ICON_COLOR } from 'constants/colors';
-import { GET_CHAPTER_BY_ORDER } from 'graphql/queries';
-import React, { FC } from 'react';
-import ReactMarkdown from 'react-markdown';
-
-import { useParams } from 'react-router-dom';
-import {
-  GetChapterByOrderInput,
-  GetChapterByOrderResponse,
-} from 'types/graphql';
-import {
-  Block,
-  Container,
-  MenuLink,
-  Navigation,
-  Paragraph,
-  Title,
-  TitleWrapper,
-} from './styles';
+import { GET_CONTENTS } from 'graphql/queries';
+import { ContentsLayout } from 'layouts';
+import React, { FC, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { GetChaptersResponse } from 'types/graphql';
+import Article from './components/Article';
 
 type Props = {};
 
 const CharacterPage: FC<Props> = () => {
-  const { order } = useParams();
-  const { data } = useQuery<GetChapterByOrderResponse, GetChapterByOrderInput>(
-    GET_CHAPTER_BY_ORDER,
-    { variables: { order: Number(order) } }
+  const [search] = useSearchParams();
+  const order = +(search.get('order') ?? 1);
+  const { data } = useQuery<GetChaptersResponse>(GET_CONTENTS);
+
+  const chapters = useMemo(
+    () => data?.getChapters?.chapters ?? [],
+    [data?.getChapters?.chapters]
   );
-  const {
-    chapter: chapterInfo,
-    next: nextChapter,
-    prev: prevChapter,
-  } = data?.getNthChapter ?? {};
+
+  const currentChapterIndex = useMemo(
+    () => chapters.findIndex((chapter) => chapter.order === order),
+    [chapters, order]
+  );
+
+  const contents = useMemo(
+    () =>
+      chapters.map((chapter) => ({
+        title: chapter.title ?? '',
+        to: `/contents?order=${chapter.order}`,
+      })) ?? [],
+    [chapters]
+  );
 
   return (
-    <Container>
-      <Block>
-        <TitleWrapper>
-          <Title>{chapterInfo?.title}</Title>
-          <Navigation>
-            {!!prevChapter && (
-              <MenuLink to={`/contents/${prevChapter}`}>
-                <FontAwesomeIcon
-                  icon={solid('caret-left')}
-                  color={MENU_ICON_COLOR}
-                />
-              </MenuLink>
-            )}
-            <MenuLink to={`/contents`}>
-              <FontAwesomeIcon
-                icon={solid('book-open')}
-                color={MENU_ICON_COLOR}
-              />
-            </MenuLink>
-            {!!nextChapter && (
-              <MenuLink to={`/contents/${nextChapter}`}>
-                <FontAwesomeIcon
-                  icon={solid('caret-right')}
-                  color={MENU_ICON_COLOR}
-                />
-              </MenuLink>
-            )}
-          </Navigation>
-        </TitleWrapper>
-        <ReactMarkdown
-          components={{
-            p: Paragraph as any,
-          }}
-        >
-          {chapterInfo?.content ?? ''}
-        </ReactMarkdown>
-      </Block>
-    </Container>
+    <ContentsLayout
+      contents={contents}
+      selectedIndex={currentChapterIndex}
+      defaultIsOpened={!search.get('order')}
+      showCloseButton
+      showHomeButton
+    >
+      <Article order={order} />
+    </ContentsLayout>
   );
 };
 

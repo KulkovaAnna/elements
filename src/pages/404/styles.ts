@@ -7,6 +7,11 @@ export const CenteredContainer = styled.div({
   alignItems: 'center',
   justifyContent: 'center',
   flexDirection: 'column',
+  position: 'fixed',
+  zIndex: 100,
+  top: 0,
+  left: 0,
+  backgroundColor: 'white',
 });
 
 export const Title404 = styled.p({

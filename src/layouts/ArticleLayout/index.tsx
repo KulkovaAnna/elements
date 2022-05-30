@@ -1,18 +1,17 @@
-import { Anchor, InfoTable, NavHeader } from 'components';
+import { Anchor, ContentsItem, InfoTable, NavHeader } from 'components';
+import ContentsLayout from 'layouts/ContentsLayout';
 import React, { FC, useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { useLocation } from 'react-router-dom';
 import { getHeaders } from 'utils/articles';
 import { ClickableHeader } from './components';
 import {
-  Container,
   Description,
   HeroImage,
   ImageWrapper,
-  List,
   ListItem,
   Main,
   Name,
-  Navigation,
   Paragraph,
 } from './styles';
 
@@ -21,7 +20,7 @@ type Props = {
   description?: string;
   article: string;
   mainImage?: string;
-  navPath: { title: string; to: string }[];
+  navPath: ContentsItem[];
   infoTable?: { title: string; value: string }[];
 };
 
@@ -35,6 +34,8 @@ const ArticleLayout: FC<Props> = ({
 }) => {
   const [headerIds, setHeaderIds] = useState<string[]>([]);
 
+  const { hash } = useLocation();
+
   const navs = getHeaders(article ?? '', '##');
 
   useEffect(() => {
@@ -44,27 +45,22 @@ const ArticleLayout: FC<Props> = ({
     }
   }, [headerIds.length, navs]);
 
+  const renderNavItem = (item: ContentsItem, index: number) => {
+    const href = `#${headerIds[index]}`;
+    return (
+      <ListItem key={index} selected={href === hash}>
+        <Anchor href={href}>{item.title}</Anchor>
+      </ListItem>
+    );
+  };
+
   return (
-    <Container>
-      <Navigation>
-        <div>
-          <List>
-            {navs?.map((header, index) => {
-              return (
-                <ListItem key={index}>
-                  <Anchor href={`#${headerIds[index]}`}>{header}</Anchor>
-                </ListItem>
-              );
-            })}
-          </List>
-        </div>
-        <div>
-          <List>
-            <ListItem>Скачать как PDF</ListItem>
-            <ListItem>Версия для печати</ListItem>
-          </List>
-        </div>
-      </Navigation>
+    <ContentsLayout
+      contents={navs?.map((nav) => ({ title: nav, to: '#' })) ?? []}
+      renderItem={renderNavItem}
+      showCloseButton
+      showHomeButton
+    >
       <Main>
         <NavHeader links={navPath} />
         <div>
@@ -92,7 +88,7 @@ const ArticleLayout: FC<Props> = ({
           )}
         </div>
       </Main>
-    </Container>
+    </ContentsLayout>
   );
 };
 

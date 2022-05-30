@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { MENU_ICON_COLOR } from 'constants/colors';
-import { MQ_MOBILE } from 'constants/media';
 import { Link } from 'react-router-dom';
 
-export const Container = styled.article({
+export const Container = styled.div({
   display: 'flex',
   width: '100%',
   flexWrap: 'wrap',
@@ -15,18 +14,7 @@ export const Container = styled.article({
 
 export const Block = styled.div({
   position: 'relative',
-  maxWidth: '35em',
-});
-
-export const HeroImage = styled.img({
-  maxWidth: '100%',
-  position: 'absolute',
-  bottom: 0,
-  maxHeight: '60%',
-  objectFit: 'cover',
-  [MQ_MOBILE]: {
-    position: 'relative',
-  },
+  maxWidth: '45em',
 });
 
 export const Paragraph = styled.p({

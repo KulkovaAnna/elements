@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ACTIVE_LINK_COLOR } from 'constants/colors';
 import { CONTENT_FONT_FAMILY } from 'constants/font';
 import { MQ_MOBILE, MQ_TABLET } from 'constants/media';
 
@@ -7,36 +8,9 @@ type WithMainProps = {
   main?: boolean;
 };
 
-export const Container = styled.div({
-  display: 'flex',
-  width: '100%',
-  justifyContent: 'space-between',
-  position: 'relative',
-});
-
-export const CenteredContainer = styled.div({
-  display: 'flex',
-  width: '100%',
-  height: '100vh',
-  alignItems: 'center',
-  justifyContent: 'center',
-});
-
-export const Navigation = styled.nav({
-  position: 'sticky',
-  top: 0,
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  minWidth: 300,
-  backgroundColor: '#edeef0',
-  padding: 40,
-  [MQ_TABLET]: {
-    position: 'initial',
-    display: 'none',
-  },
-});
+type ListItemProps = {
+  selected?: boolean;
+};
 
 export const Main = styled.article({
   padding: 40,
@@ -127,12 +101,16 @@ export const TitleWrapper = styled.a({
 
 export const List = styled.ul({});
 
-export const ListItem = styled.li({
+export const ListItem = styled.li<ListItemProps>(({ selected }) => ({
   listStyle: 'none',
   fontFamily: CONTENT_FONT_FAMILY,
   fontSize: 18,
   paddingBottom: 20,
-});
+  fontWeight: selected ? 'bold' : 'initial',
+  '&:hover *': {
+    color: ACTIVE_LINK_COLOR,
+  },
+}));
 
 export const ChevronIcon = styled(FontAwesomeIcon)({
   display: 'none',
