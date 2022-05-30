@@ -1,3 +1,4 @@
+import React from 'react';
 import { CenteredContainer, Description, Title404 } from './styles';
 
 export default function Page404() {

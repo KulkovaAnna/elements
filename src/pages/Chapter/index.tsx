@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { GetChaptersResponse } from 'types/graphql';
 import Article from './components/Article';
 
-type Props = {};
+type Props = Record<string, never>;
 
 const CharacterPage: FC<Props> = () => {
   const [search] = useSearchParams();

@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import { GetCharactersResponse } from 'types/graphql';
 import './styles.css';
 
-type Props = {};
+type Props = Record<string, never>;
 
 const CharacterList: FC<Props> = () => {
   const { data } = useQuery<GetCharactersResponse>(GET_CHARACTERS);
   return (
     <div>
       <ul>
-        {data?.getCharacters?.map?.((hero: any) => {
+        {data?.getCharacters?.map?.((hero) => {
           return (
             <li key={hero.id}>
               <Link to={`${hero.id}`}>{hero.name}</Link>

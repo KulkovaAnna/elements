@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Header } from 'components';
 import './styles.css';
 
-type Props = {};
+type Props = Record<string, never>;
 
 const HomePage: FC<Props> = () => {
   return (

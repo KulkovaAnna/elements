@@ -80,7 +80,7 @@ const ArticleLayout: FC<Props> = ({
             <ReactMarkdown
               components={{
                 h2: ClickableHeader as FC,
-                p: Paragraph as any,
+                p: Paragraph as FC,
               }}
             >
               {article}

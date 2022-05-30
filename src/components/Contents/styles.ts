@@ -45,7 +45,7 @@ export const MainList = styled.ul({
 });
 
 export const BottomList = styled.ul({
-  borderTop: `1px solid rgba(0,0,0, 0.1)`,
+  borderTop: '1px solid rgba(0,0,0, 0.1)',
   display: 'flex',
   flexDirection: 'column',
   padding: '20px 40px',
@@ -87,7 +87,7 @@ export const CloseButton = styled.button<INavigation>(({ opened }) => ({
 
 export const HomeBlock = styled(Link)({
   width: '100%',
-  borderBottom: `1px solid rgba(0,0,0, 0.1)`,
+  borderBottom: '1px solid rgba(0,0,0, 0.1)',
   padding: '20px 40px',
   display: 'flex',
   alignItems: 'center',
