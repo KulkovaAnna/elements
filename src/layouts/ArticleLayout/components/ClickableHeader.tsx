@@ -1,3 +1,4 @@
+import React from 'react';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import useDimension from 'hooks/useDimension';
 import { FC, useState, useCallback, useEffect } from 'react';

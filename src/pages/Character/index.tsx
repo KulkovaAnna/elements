@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { GetCharacterByIdInput, GetCharacterByIdResponse } from 'types/graphql';
 import { getHeaders } from 'utils/articles';
 
-type Props = {};
+type Props = Record<string, never>;
 
 const CharacterPage: FC<Props> = () => {
   const { id } = useParams();

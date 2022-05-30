@@ -5,19 +5,19 @@ import LoadingScreen from 'components/LoadingScreen';
 import { MENU_ICON_COLOR } from 'constants/colors';
 import { GET_CHAPTER_BY_ORDER } from 'graphql/queries';
 import Page404 from 'pages/404';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 import {
-  GetChapterByOrderResponse,
   GetChapterByOrderInput,
+  GetChapterByOrderResponse,
 } from 'types/graphql';
 import {
   Block,
-  TitleWrapper,
-  Title,
-  Navigation,
   MenuLink,
+  Navigation,
   Paragraph,
+  Title,
+  TitleWrapper,
 } from '../styles';
 
 interface Props {
@@ -69,7 +69,7 @@ const Article: FC<Props> = ({ order }) => {
       </TitleWrapper>
       <ReactMarkdown
         components={{
-          p: Paragraph as any,
+          p: Paragraph as FC,
         }}
       >
         {chapterInfo?.content ?? ''}
