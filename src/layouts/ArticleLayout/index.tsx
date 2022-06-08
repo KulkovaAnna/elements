@@ -60,6 +60,7 @@ const ArticleLayout: FC<Props> = ({
       renderItem={renderNavItem}
       showCloseButton
       showHomeButton
+      defaultIsOpened={false}
     >
       <Main>
         <NavHeader links={navPath} />

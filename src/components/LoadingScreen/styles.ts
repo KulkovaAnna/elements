@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { MENU_ICON_COLOR } from 'constants/colors';
 
 export const CenteredContainer = styled.div({
   display: 'flex',
@@ -6,4 +7,7 @@ export const CenteredContainer = styled.div({
   height: '100vh',
   alignItems: 'center',
   justifyContent: 'center',
+  '& *': {
+    color: MENU_ICON_COLOR,
+  },
 });

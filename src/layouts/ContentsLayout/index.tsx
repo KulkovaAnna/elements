@@ -1,4 +1,6 @@
 import { Contents, ContentsItem, ContentsProps } from 'components';
+import useDimension from 'hooks/useDimension';
+import useDisableBodyScroll from 'hooks/usePreventBodyScroll';
 import React, { FC } from 'react';
 import { ArticleWrapper, Container } from './styles';
 
@@ -12,6 +14,8 @@ const ContentsLayout: FC<Props> = ({
   children,
   ...contentsProps
 }) => {
+  const { isTablet } = useDimension();
+  useDisableBodyScroll(isTablet && !!contentsProps.isOpen);
   return (
     <Container>
       <Contents data={contents} {...contentsProps} />
