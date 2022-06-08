@@ -6,6 +6,7 @@ import {
   BottomList,
   CloseButton,
   HomeBlock,
+  HomeBlockLeft,
   ListItem,
   MainList,
   Navigation,
@@ -14,38 +15,54 @@ import {
 export type ContentsItem = { title: string; to: string };
 
 export type ContentsProps = {
+  isOpen?: boolean;
   defaultIsOpened?: boolean;
   data: ContentsItem[];
   showCloseButton?: boolean;
   selectedIndex?: number;
   showHomeButton?: boolean;
   renderItem?(text: ContentsItem, index: number): JSX.Element;
+  onCloseButtonClick?(): void;
+  onItemClick?(): void;
 };
 
 const Contents: FC<ContentsProps> = ({
+  isOpen,
   data,
   showCloseButton = false,
   renderItem,
   selectedIndex,
   defaultIsOpened = true,
   showHomeButton = false,
+  onCloseButtonClick,
+  onItemClick,
 }) => {
-  const [opened, setIsOpened] = useState(defaultIsOpened);
+  const [_opened, _setIsOpened] = useState(defaultIsOpened);
+
+  const opened = isOpen !== undefined ? isOpen : _opened;
 
   const handleButtonClick = useCallback(() => {
-    setIsOpened(!opened);
+    _setIsOpened(!opened);
+    onCloseButtonClick?.();
   }, [opened]);
 
   return (
     <Navigation opened={opened}>
       {showHomeButton && (
-        <HomeBlock to="/">
+        <HomeBlock>
+          <HomeBlockLeft to="/">
+            <FontAwesomeIcon
+              icon={solid('chevron-left')}
+              size="1x"
+              style={{ marginRight: 10 }}
+            />
+            <ListItem style={{ padding: 0 }}>На главную</ListItem>
+          </HomeBlockLeft>
           <FontAwesomeIcon
-            icon={solid('chevron-left')}
+            icon={solid('close')}
             size="1x"
-            style={{ marginRight: 10 }}
+            onClick={handleButtonClick}
           />
-          <ListItem style={{ padding: 0 }}>На главную</ListItem>
         </HomeBlock>
       )}
       <MainList>
@@ -53,8 +70,14 @@ const Contents: FC<ContentsProps> = ({
           renderItem ??
             ((header, index) => {
               return (
-                <ListItem key={index} selected={index === selectedIndex}>
-                  <Link to={header.to}>{header.title}</Link>
+                <ListItem
+                  key={index}
+                  selected={index === selectedIndex}
+                  onClick={onItemClick}
+                >
+                  <Link style={{ display: 'flex' }} to={header.to}>
+                    {header.title}
+                  </Link>
                 </ListItem>
               );
             })

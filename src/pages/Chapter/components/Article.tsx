@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LoadingScreen from 'components/LoadingScreen';
 import { MENU_ICON_COLOR } from 'constants/colors';
 import { GET_CHAPTER_BY_ORDER } from 'graphql/queries';
-import Page404 from 'pages/404';
 import React, { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 import {
@@ -22,9 +21,10 @@ import {
 
 interface Props {
   order: number;
+  onMenuClick?(): void;
 }
 
-const Article: FC<Props> = ({ order }) => {
+const Article: FC<Props> = ({ order, onMenuClick }) => {
   const { data, loading } = useQuery<
     GetChapterByOrderResponse,
     GetChapterByOrderInput
@@ -39,29 +39,32 @@ const Article: FC<Props> = ({ order }) => {
     return <LoadingScreen />;
   }
 
-  if (order && !loading && !data?.getNthChapter?.chapter) {
-    return <Page404 />;
-  }
   return (
     <Block>
       <TitleWrapper>
+        <FontAwesomeIcon
+          icon={solid('align-justify')}
+          size="2x"
+          color={MENU_ICON_COLOR}
+          onClick={onMenuClick}
+        />
         <Title>{chapterInfo?.title}</Title>
         <Navigation>
           {!!prevChapter && (
             <MenuLink to={`/contents?order=${prevChapter}`}>
               <FontAwesomeIcon
-                icon={solid('caret-left')}
+                icon={solid('chevron-left')}
                 color={MENU_ICON_COLOR}
-                size="3x"
+                size="2x"
               />
             </MenuLink>
           )}
           {!!nextChapter && (
             <MenuLink to={`/contents?order=${nextChapter}`}>
               <FontAwesomeIcon
-                icon={solid('caret-right')}
+                icon={solid('chevron-right')}
                 color={MENU_ICON_COLOR}
-                size="3x"
+                size="2x"
               />
             </MenuLink>
           )}

@@ -26,13 +26,16 @@ export const Navigation = styled.nav<INavigation>(({ opened }) => ({
   backgroundColor: CONTENTS_BACKGROUND_COLOR,
   transition: '0.3s ease all',
   marginLeft: opened ? 0 : -278,
+  zIndex: 1000,
   '& > *:not(button)': {
     transition: '0.3s ease all',
     opacity: opened ? 1 : 0,
   },
   [MQ_TABLET]: {
-    position: 'initial',
-    display: 'none',
+    position: 'fixed',
+    left: 0,
+    width: '100%',
+    marginLeft: opened ? 0 : '-100%',
   },
 }));
 
@@ -53,6 +56,7 @@ export const BottomList = styled.ul({
 });
 
 export const ListItem = styled.li<IListItem>(({ selected }) => ({
+  width: '100%',
   listStyle: 'none',
   fontFamily: CONTENT_FONT_FAMILY,
   fontSize: 18,
@@ -83,15 +87,35 @@ export const CloseButton = styled.button<INavigation>(({ opened }) => ({
   '*': {
     color: MENU_ICON_COLOR,
   },
+  [MQ_TABLET]: {
+    display: 'none',
+  },
 }));
 
-export const HomeBlock = styled(Link)({
+export const HomeBlock = styled.div({
   width: '100%',
   borderBottom: '1px solid rgba(0,0,0, 0.1)',
   padding: '20px 40px',
   display: 'flex',
   alignItems: 'center',
   transition: '0.3s ease all',
+  justifyContent: 'space-between',
+  '& > *:last-child': {
+    display: 'none',
+    '&:active *': {
+      color: ACTIVE_LINK_COLOR,
+    },
+  },
+  [MQ_TABLET]: {
+    '& > *:last-child': {
+      display: 'block',
+    },
+  },
+});
+
+export const HomeBlockLeft = styled(Link)({
+  display: 'flex',
+  alignItems: 'center',
   '&:hover *': {
     color: ACTIVE_LINK_COLOR,
   },

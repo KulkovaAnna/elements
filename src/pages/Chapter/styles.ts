@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { MENU_ICON_COLOR } from 'constants/colors';
+import { ACTIVE_LINK_COLOR, MENU_ICON_COLOR } from 'constants/colors';
+import { MQ_TABLET } from 'constants/media';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div({
@@ -27,7 +28,7 @@ export const Paragraph = styled.p({
 export const Title = styled.p({
   fontSize: 26,
   fontWeight: '600',
-  margin: 16,
+  margin: '16px 0',
   fontFamily: "'Playfair Display', -apple-system, BlinkMacSystemFont",
 });
 
@@ -35,6 +36,22 @@ export const TitleWrapper = styled.div({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  position: 'sticky',
+  top: 0,
+  backgroundColor: '#FFFFFF',
+  marginLeft: 16,
+  '& > *:first-child': {
+    '& *': {
+      color: MENU_ICON_COLOR,
+    },
+    '&:active *': {
+      color: ACTIVE_LINK_COLOR,
+    },
+    display: 'none',
+    [MQ_TABLET]: {
+      display: 'block',
+    },
+  },
 });
 
 export const Navigation = styled.div({
@@ -49,5 +66,8 @@ export const Navigation = styled.div({
 export const MenuLink = styled(Link)({
   '*': {
     color: MENU_ICON_COLOR,
+    '&:active *': {
+      color: ACTIVE_LINK_COLOR,
+    },
   },
 });

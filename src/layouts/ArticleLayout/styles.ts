@@ -23,7 +23,7 @@ export const ImageWrapper = styled.div<WithMainProps>(() => ({
   justifyContent: 'initial',
   margin: '0 0 10px 30px',
   padding: 10,
-  minWidth: 375,
+  minWidth: 315,
   maxWidth: '30%',
   float: 'right',
   border: '1px solid #dcdcdc',
