@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { OFFSET_DEFAULT_PLUS } from 'constants/offsets';
 
 export const CenteredContainer = styled.div({
   width: '100vw',
@@ -16,9 +17,9 @@ export const CenteredContainer = styled.div({
 
 export const Title404 = styled.p({
   fontSize: 64,
-  marginBottom: 24,
+  marginBottom: OFFSET_DEFAULT_PLUS,
 });
 
 export const Description = styled.p({
-  fontSize: 24,
+  fontSize: OFFSET_DEFAULT_PLUS,
 });

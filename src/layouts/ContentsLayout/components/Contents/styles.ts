@@ -6,6 +6,7 @@ import {
 } from 'constants/colors';
 import { CONTENT_FONT_FAMILY } from 'constants/font';
 import { MQ_TABLET } from 'constants/media';
+import { OFFSET_BIG, OFFSET_DEFAULT } from 'constants/offsets';
 import { Link } from 'react-router-dom';
 
 interface IListItem {
@@ -44,14 +45,14 @@ export const MainList = styled.ul({
   flexGrow: 1,
   display: 'flex',
   flexDirection: 'column',
-  padding: '20px 40px',
+  padding: `${OFFSET_DEFAULT}px ${OFFSET_BIG}px`,
 });
 
 export const BottomList = styled.ul({
   borderTop: '1px solid rgba(0,0,0, 0.1)',
   display: 'flex',
   flexDirection: 'column',
-  padding: '20px 40px',
+  padding: `${OFFSET_DEFAULT}px ${OFFSET_BIG}px`,
   transition: '0.3s ease all',
 });
 
@@ -60,7 +61,7 @@ export const ListItem = styled.li<IListItem>(({ selected }) => ({
   listStyle: 'none',
   fontFamily: CONTENT_FONT_FAMILY,
   fontSize: 18,
-  paddingBottom: 20,
+  paddingBottom: OFFSET_DEFAULT,
   fontWeight: selected ? 'bold' : 'initial',
   '&:hover, &:hover *': {
     color: ACTIVE_LINK_COLOR,
@@ -95,7 +96,7 @@ export const CloseButton = styled.button<INavigation>(({ opened }) => ({
 export const HomeBlock = styled.div({
   width: '100%',
   borderBottom: '1px solid rgba(0,0,0, 0.1)',
-  padding: '20px 40px',
+  padding: `${OFFSET_DEFAULT}px ${OFFSET_BIG}px`,
   display: 'flex',
   alignItems: 'center',
   transition: '0.3s ease all',

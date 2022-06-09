@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -13,7 +13,7 @@ export default function useDimension() {
   const [isTablet, setIsTablet] = useState(false);
   const [dimentions, setDimentions] = useState(getWindowDimensions());
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const listener = () => {
       setDimentions(getWindowDimensions());
     };
@@ -21,7 +21,7 @@ export default function useDimension() {
     return () => window.removeEventListener('resize', listener);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setIsMobile(dimentions.width <= 768);
     setIsTablet(dimentions.width <= 1024);
   }, [dimentions]);

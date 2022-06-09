@@ -1,5 +1,6 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { OFFSET_SMALL } from 'constants/offsets';
 import React, { FC, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -54,7 +55,7 @@ const Contents: FC<ContentsProps> = ({
             <FontAwesomeIcon
               icon={solid('chevron-left')}
               size="1x"
-              style={{ marginRight: 10 }}
+              style={{ marginRight: OFFSET_SMALL }}
             />
             <ListItem style={{ padding: 0 }}>На главную</ListItem>
           </HomeBlockLeft>
