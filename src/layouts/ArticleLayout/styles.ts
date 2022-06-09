@@ -3,6 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ACTIVE_LINK_COLOR } from 'constants/colors';
 import { CONTENT_FONT_FAMILY } from 'constants/font';
 import { MQ_MOBILE, MQ_TABLET } from 'constants/media';
+import {
+  OFFSET_BIG,
+  OFFSET_DEFAULT,
+  OFFSET_MEDIUM,
+  OFFSET_SMALL,
+  OFFSET_SMALL_PLUS,
+} from 'constants/offsets';
 
 type WithMainProps = {
   main?: boolean;
@@ -13,16 +20,16 @@ type ListItemProps = {
 };
 
 export const Main = styled.article({
-  padding: 40,
+  padding: OFFSET_BIG,
   [MQ_TABLET]: {
-    padding: 20,
+    padding: OFFSET_DEFAULT,
   },
 });
 
 export const ImageWrapper = styled.div<WithMainProps>(() => ({
   justifyContent: 'initial',
-  margin: '0 0 10px 30px',
-  padding: 10,
+  margin: `0 0 ${OFFSET_SMALL}px ${OFFSET_MEDIUM}px`,
+  padding: OFFSET_SMALL,
   minWidth: 315,
   maxWidth: '30%',
   float: 'right',
@@ -30,9 +37,9 @@ export const ImageWrapper = styled.div<WithMainProps>(() => ({
   backgroundColor: '#edeef0',
   borderRadius: 5,
   [MQ_MOBILE]: {
-    padding: 20,
+    padding: OFFSET_DEFAULT,
     float: 'initial',
-    margin: '20px auto',
+    margin: `${OFFSET_DEFAULT}px auto`,
   },
 }));
 
@@ -41,7 +48,7 @@ export const Name = styled.p({
   fontSize: '8vmax',
   fontWeight: '600',
   margin: 0,
-  marginBottom: 20,
+  marginBottom: OFFSET_DEFAULT,
   fontFamily: "'Playfair Display', -apple-system, BlinkMacSystemFont",
   borderBottom: '0',
   [MQ_TABLET]: {
@@ -64,13 +71,13 @@ export const Description = styled.span({
   lineHeight: 1.3,
   [MQ_TABLET]: {
     width: '100%',
-    paddingRight: 20,
+    paddingRight: OFFSET_DEFAULT,
   },
 });
 
 export const Paragraph = styled.p({
   fontSize: 20,
-  marginBottom: 15,
+  marginBottom: OFFSET_SMALL_PLUS,
   lineHeight: 1.3,
   textAlign: 'justify',
   display: 'block',
@@ -92,8 +99,8 @@ export const TitleWrapper = styled.a({
   gridArea: 'fullname',
   alignItems: 'center',
   borderBottom: '1px solid rgba(0, 0, 0, 0.3)',
-  padding: '10px 0',
-  margin: '10px 0',
+  padding: `${OFFSET_SMALL}px 0`,
+  margin: `${OFFSET_SMALL}px 0`,
   [MQ_TABLET]: {
     borderBottomColor: 'rgba(0, 0 , 0, 0.1)',
   },
@@ -105,7 +112,7 @@ export const ListItem = styled.li<ListItemProps>(({ selected }) => ({
   listStyle: 'none',
   fontFamily: CONTENT_FONT_FAMILY,
   fontSize: 18,
-  paddingBottom: 20,
+  paddingBottom: OFFSET_DEFAULT,
   fontWeight: selected ? 'bold' : 'initial',
   '&:hover *': {
     color: ACTIVE_LINK_COLOR,

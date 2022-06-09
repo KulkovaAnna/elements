@@ -1,5 +1,6 @@
-import { Anchor, ContentsItem, InfoTable, NavHeader } from 'components';
-import ContentsLayout from 'layouts/ContentsLayout';
+import { Anchor, InfoTable, NavHeader } from 'components';
+import useDimension from 'hooks/useDimension';
+import ContentsLayout, { ContentsItem } from 'layouts/ContentsLayout';
 import React, { FC, useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useLocation } from 'react-router-dom';
@@ -38,6 +39,8 @@ const ArticleLayout: FC<Props> = ({
 
   const navs = getHeaders(article ?? '', '##');
 
+  const { isMobile } = useDimension();
+
   useEffect(() => {
     const headers = document.querySelectorAll('.article-header');
     if (!headerIds.length && navs?.length) {
@@ -58,9 +61,9 @@ const ArticleLayout: FC<Props> = ({
     <ContentsLayout
       contents={navs?.map((nav) => ({ title: nav, to: '#' })) ?? []}
       renderItem={renderNavItem}
-      showCloseButton
-      showHomeButton
-      defaultIsOpened={false}
+      showCloseButton={false}
+      showHomeButton={false}
+      isOpen={!isMobile}
     >
       <Main>
         <NavHeader links={navPath} />

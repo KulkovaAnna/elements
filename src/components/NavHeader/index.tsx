@@ -1,6 +1,6 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ContentsItem } from 'components/Contents';
+import { ContentsItem } from 'layouts/ContentsLayout';
 import React, { FC, HTMLAttributes } from 'react';
 import { Container, Link } from './styles';
 
