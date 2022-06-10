@@ -1,10 +1,12 @@
 import { gql } from '@apollo/client';
 
-export const GET_CHARACTERS = gql`
+export const GET_CHARACTERS_FOR_CONTENTS = gql`
   query getCharacters {
     getCharacters {
       id
       name
+      thumbnail_image
+      role
     }
   }
 `;

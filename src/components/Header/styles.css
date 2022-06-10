@@ -1,18 +1,19 @@
 .header {
   width: 100%;
   display: flex;
-  justify-content: center;
-  height: 70px;
   border-bottom: 1px solid black;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+}
+.header_link__home {
+  position: relative;
+  left: 0;
+  margin-right: auto;
 }
 
 .header_link {
   text-decoration: none;
-  height: 100%;
   box-sizing: border-box;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,8 +23,21 @@
 
 .header_link:last-child {
   border-right: none;
+  margin-right: auto;
 }
 
 .header_link__main {
   font-size: 34pt;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+  .header_link__home {
+    margin-right: 0;
+  }
+  .header_link:last-child {
+    margin-right: 0;
+  }
 }

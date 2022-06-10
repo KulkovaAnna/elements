@@ -7,6 +7,9 @@ type Props = Record<string, never>;
 const Header: FC<Props> = () => {
   return (
     <ul className="header">
+      <li className="header_link header_link__home">
+        <Link to="/">Домой</Link>
+      </li>
       <li className="header_link">
         <Link to="#">Бестиарий</Link>
       </li>

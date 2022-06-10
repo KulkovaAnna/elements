@@ -1,4 +1,4 @@
-import { Chapter, Character } from 'types/models';
+import { Chapter, Character, Role } from 'types/models';
 
 type GetByIdInput = {
   id: number;
@@ -11,10 +11,12 @@ type PaginationInput<T> = {
   };
 };
 
-export type GetCharactersResponse = {
+export type GetCharactersForContentsResponse = {
   getCharacters: {
-    id: string;
+    id: number;
     name?: string;
+    thumbnail_image?: string;
+    role?: Role;
   }[];
 };
 

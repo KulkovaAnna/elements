@@ -1,15 +1,11 @@
 import React, { FC } from 'react';
-import { Header } from 'components';
 import './styles.css';
+import { MainLayout } from 'layouts';
 
 type Props = Record<string, never>;
 
 const HomePage: FC<Props> = () => {
-  return (
-    <div>
-      <Header />
-    </div>
-  );
+  return <MainLayout>Hello</MainLayout>;
 };
 
 export default HomePage;
