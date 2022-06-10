@@ -35,6 +35,12 @@ export enum Relationship {
   stepdaughter = 'stepdaughter',
 }
 
+export enum Role {
+  protagonist = 'protagonist',
+  main = 'main',
+  minor = 'minor',
+}
+
 export type Family = {
   id: number;
   relative_id: number;
@@ -48,12 +54,14 @@ export type Character = {
   description?: string;
   story?: string;
   hero_image?: string;
+  thumbnail_image?: string;
   race?: Race;
   full_name?: string;
   sex?: Sex;
   birth_date?: number;
   death_date?: number;
   family?: Family[];
+  role?: Role;
 };
 
 export type User = {

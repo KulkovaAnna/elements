@@ -39,7 +39,7 @@ const ArticleLayout: FC<Props> = ({
 
   const navs = getHeaders(article ?? '', '##');
 
-  const { isMobile } = useDimension();
+  const { isTablet } = useDimension();
 
   useEffect(() => {
     const headers = document.querySelectorAll('.article-header');
@@ -63,7 +63,7 @@ const ArticleLayout: FC<Props> = ({
       renderItem={renderNavItem}
       showCloseButton={false}
       showHomeButton={false}
-      isOpen={!isMobile}
+      isOpen={!isTablet}
     >
       <Main>
         <NavHeader links={navPath} />

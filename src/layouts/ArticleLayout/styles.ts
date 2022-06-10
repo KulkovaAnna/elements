@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ACTIVE_LINK_COLOR } from 'constants/colors';
+import {
+  ACTIVE_LINK_COLOR,
+  CONTENTS_BACKGROUND_COLOR,
+  IMAGE_BORDER_COLOR,
+} from 'constants/colors';
 import { CONTENT_FONT_FAMILY } from 'constants/font';
 import { MQ_MOBILE, MQ_TABLET } from 'constants/media';
 import {
@@ -34,7 +38,7 @@ export const ImageWrapper = styled.div<WithMainProps>(() => ({
   maxWidth: '30%',
   float: 'right',
   border: '1px solid #dcdcdc',
-  backgroundColor: '#edeef0',
+  backgroundColor: CONTENTS_BACKGROUND_COLOR,
   borderRadius: 5,
   [MQ_MOBILE]: {
     padding: OFFSET_DEFAULT,
@@ -61,7 +65,7 @@ export const HeroImage = styled.img({
   maxHeight: '100%',
   objectFit: 'cover',
   borderRadius: 5,
-  border: '1px solid #dcdcdc',
+  border: `1px solid ${IMAGE_BORDER_COLOR}`,
 });
 
 export const Description = styled.span({
