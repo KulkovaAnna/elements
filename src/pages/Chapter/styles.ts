@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
-import { ACTIVE_LINK_COLOR, MENU_ICON_COLOR } from 'constants/colors';
+import {
+  ACTIVE_LINK_COLOR,
+  LIGHT_THEME_BACKGROUND,
+  MENU_ICON_COLOR,
+} from 'constants/colors';
 import { MQ_TABLET } from 'constants/media';
 import {
   OFFSET_BIG,
@@ -45,7 +49,7 @@ export const TitleWrapper = styled.div({
   justifyContent: 'space-between',
   position: 'sticky',
   top: 0,
-  backgroundColor: '#FFFFFF',
+  backgroundColor: LIGHT_THEME_BACKGROUND,
   marginLeft: OFFSET_SMALL_PLUS,
   '& > *:first-child': {
     '& *': {

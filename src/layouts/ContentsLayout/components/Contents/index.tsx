@@ -1,5 +1,6 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useHeaderHeight } from 'components/Header';
 import { OFFSET_SMALL } from 'constants/offsets';
 import React, { FC, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -25,6 +26,7 @@ export type ContentsProps = {
   renderItem?(text: ContentsItem, index: number): JSX.Element;
   onCloseButtonClick?(): void;
   onItemClick?(): void;
+  includeHeaderHeight?: boolean;
 };
 
 const Contents: FC<ContentsProps> = ({
@@ -37,18 +39,32 @@ const Contents: FC<ContentsProps> = ({
   showHomeButton = false,
   onCloseButtonClick,
   onItemClick,
+  includeHeaderHeight,
 }) => {
   const [_opened, _setIsOpened] = useState(defaultIsOpened);
-
+  const [startTouch, setStartTouch] = useState<number>(0);
   const opened = isOpen !== undefined ? isOpen : _opened;
 
   const handleButtonClick = useCallback(() => {
     _setIsOpened(!opened);
     onCloseButtonClick?.();
   }, [opened]);
-
+  const headerHeight = useHeaderHeight();
   return (
-    <Navigation opened={opened}>
+    <Navigation
+      onTouchStart={(event) => setStartTouch(event.changedTouches[0].clientX)}
+      onTouchEnd={(event) => {
+        if (startTouch - event.changedTouches[0].clientX > 100) {
+          handleButtonClick();
+        }
+      }}
+      opened={opened}
+      style={
+        includeHeaderHeight
+          ? { top: headerHeight, height: `calc(100vh - ${headerHeight}px)` }
+          : {}
+      }
+    >
       {showHomeButton && (
         <HomeBlock>
           <HomeBlockLeft to="/">

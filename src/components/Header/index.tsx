@@ -1,32 +1,69 @@
-import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
-import './styles.css';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { MENU_ICON_COLOR } from 'constants/colors';
+import React, { FC, useEffect, useState } from 'react';
+import { Contents } from './components';
+import {
+  Container,
+  LinkItem,
+  Logo,
+  LogoLink,
+  MainBlock,
+  MenuIcon,
+  ReadLink,
+} from './styles';
 
-type Props = Record<string, never>;
+type Props = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>;
 
-const Header: FC<Props> = () => {
+const Header: FC<Props> = (props) => {
+  const [menuIsOpened, setMenuIsOpened] = useState(false);
+  const [startTouch, setStartTouch] = useState<number>(0);
+
+  const changeMenuState = () => {
+    setMenuIsOpened(!menuIsOpened);
+  };
   return (
-    <ul className="header">
-      <li className="header_link header_link__home">
-        <Link to="/">Домой</Link>
-      </li>
-      <li className="header_link">
-        <Link to="#">Бестиарий</Link>
-      </li>
-      <li className="header_link">
-        <Link to="/characters">Персонажи</Link>
-      </li>
-      <li className="header_link header_link__main">
-        <Link to="/contents">Читать</Link>
-      </li>
-      <li className="header_link">
-        <Link to="#">История</Link>
-      </li>
-      <li className="header_link">
-        <Link to="#">Локации</Link>
-      </li>
-    </ul>
+    <Container {...props} id="main-header">
+      <MenuIcon
+        icon={solid('bars')}
+        size="2x"
+        color={MENU_ICON_COLOR}
+        onClick={changeMenuState}
+      />
+      <LogoLink to="/">
+        <Logo src={require('../../assets/logo.png')} alt="logo" />
+      </LogoLink>
+      <Contents
+        isOpen={menuIsOpened}
+        onCloseClick={changeMenuState}
+        onTouchStart={(event) => setStartTouch(event.changedTouches[0].clientX)}
+        onTouchEnd={(event) => {
+          if (startTouch - event.changedTouches[0].clientX > 100) {
+            setMenuIsOpened(false);
+          }
+        }}
+      />
+      <MainBlock>
+        <LinkItem to="#">Бестиарий</LinkItem>
+        <LinkItem to="/characters">Персонажи</LinkItem>
+        <ReadLink to="/contents">Читать</ReadLink>
+        <LinkItem to="#">История</LinkItem>
+        <LinkItem to="#">Локации</LinkItem>
+      </MainBlock>
+      <div />
+    </Container>
   );
 };
+
+export function useHeaderHeight() {
+  const [headerHeight, setHeaderHeight] = useState(0);
+  useEffect(() => {
+    const header = document.querySelector('#main-header');
+    setHeaderHeight(header?.clientHeight ?? 0);
+  }, []);
+  return headerHeight;
+}
 
 export default Header;

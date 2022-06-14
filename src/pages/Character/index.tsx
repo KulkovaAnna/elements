@@ -43,10 +43,6 @@ const CharacterPage: FC<Props> = () => {
       title={heroInfo?.name ?? ''}
       description={heroInfo?.description}
       mainImage={heroInfo?.hero_image}
-      navPath={[
-        { title: 'Персонажи', to: '/characters' },
-        { title: heroInfo?.name ?? '', to: '#' },
-      ]}
       infoTable={[
         { title: 'Пол', value: heroInfo?.sex ?? '?' },
         { title: 'Раса', value: heroInfo?.race ?? '?' },

@@ -5,7 +5,11 @@ import { MainLayout } from 'layouts';
 type Props = Record<string, never>;
 
 const HomePage: FC<Props> = () => {
-  return <MainLayout>Hello</MainLayout>;
+  return (
+    <MainLayout>
+      <></>
+    </MainLayout>
+  );
 };
 
 export default HomePage;

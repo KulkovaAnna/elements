@@ -14,8 +14,8 @@ const ContentsLayout: FC<Props> = ({
   children,
   ...contentsProps
 }) => {
-  const { isTablet } = useDimension();
-  useDisableBodyScroll(isTablet && !!contentsProps.isOpen);
+  const { isMobile } = useDimension();
+  useDisableBodyScroll(isMobile && !!contentsProps.isOpen);
   return (
     <Container>
       <Contents data={contents} {...contentsProps} />

@@ -1,16 +1,18 @@
-import { Header } from 'components';
+import { useHeaderHeight } from 'components/Header';
 import React, { FC } from 'react';
-import { Container } from './styles';
+import { Container, FixedHeader, Children } from './styles';
 
 type Props = {
   children: JSX.Element | JSX.Element[] | string | string[];
+  currentLink?: '';
 };
 
 const MainLayout: FC<Props> = ({ children }) => {
+  const headerHeight = useHeaderHeight();
   return (
     <Container>
-      <Header />
-      {children}
+      <FixedHeader />
+      <Children style={{ marginTop: headerHeight }}>{children}</Children>
     </Container>
   );
 };
