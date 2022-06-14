@@ -43,7 +43,7 @@ const Article: FC<Props> = ({ order, onMenuClick }) => {
     <Block>
       <TitleWrapper>
         <FontAwesomeIcon
-          icon={solid('align-justify')}
+          icon={solid('bars')}
           size="2x"
           color={MENU_ICON_COLOR}
           onClick={onMenuClick}

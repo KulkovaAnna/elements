@@ -4,6 +4,7 @@ import {
   ACTIVE_LINK_COLOR,
   CONTENTS_BACKGROUND_COLOR,
   IMAGE_BORDER_COLOR,
+  LIGHT_THEME_BACKGROUND,
 } from 'constants/colors';
 import { CONTENT_FONT_FAMILY } from 'constants/font';
 import { MQ_MOBILE, MQ_TABLET } from 'constants/media';
@@ -24,7 +25,7 @@ type ListItemProps = {
 };
 
 export const Main = styled.article({
-  padding: OFFSET_BIG,
+  padding: `0 ${OFFSET_BIG}px`,
   [MQ_TABLET]: {
     padding: OFFSET_DEFAULT,
   },
@@ -93,7 +94,7 @@ export const Paragraph = styled.p({
 export const Title = styled.h2({
   fontSize: 26,
   fontWeight: '600',
-  backgroundColor: '#FFFFFF',
+  backgroundColor: LIGHT_THEME_BACKGROUND,
   width: '100%',
   fontFamily: "'Playfair Display', -apple-system, BlinkMacSystemFont",
 });

@@ -1,6 +1,7 @@
-import { Anchor, InfoTable, NavHeader } from 'components';
+import { Anchor, InfoTable } from 'components';
 import useDimension from 'hooks/useDimension';
 import ContentsLayout, { ContentsItem } from 'layouts/ContentsLayout';
+import MainLayout from 'layouts/MainLayout';
 import React, { FC, useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useLocation } from 'react-router-dom';
@@ -21,7 +22,6 @@ type Props = {
   description?: string;
   article: string;
   mainImage?: string;
-  navPath: ContentsItem[];
   infoTable?: { title: string; value: string }[];
 };
 
@@ -30,7 +30,6 @@ const ArticleLayout: FC<Props> = ({
   description,
   article,
   mainImage,
-  navPath = [],
   infoTable = [],
 }) => {
   const [headerIds, setHeaderIds] = useState<string[]>([]);
@@ -58,41 +57,43 @@ const ArticleLayout: FC<Props> = ({
   };
 
   return (
-    <ContentsLayout
-      contents={navs?.map((nav) => ({ title: nav, to: '#' })) ?? []}
-      renderItem={renderNavItem}
-      showCloseButton={false}
-      showHomeButton={false}
-      isOpen={!isTablet}
-    >
-      <Main>
-        <NavHeader links={navPath} />
-        <div>
-          <Name>{title}</Name>
-          <ImageWrapper>
-            <HeroImage
-              src={
-                mainImage
-                  ? `${process.env.REACT_APP_STORAGE_URL}/${mainImage}`
-                  : require('../../assets/male_placeholder.png')
-              }
-            />
-            <InfoTable info={infoTable} />
-          </ImageWrapper>
-          <Description>{description}</Description>
-          {article && (
-            <ReactMarkdown
-              components={{
-                h2: ClickableHeader as FC,
-                p: Paragraph as FC,
-              }}
-            >
-              {article}
-            </ReactMarkdown>
-          )}
-        </div>
-      </Main>
-    </ContentsLayout>
+    <MainLayout>
+      <ContentsLayout
+        contents={navs?.map((nav) => ({ title: nav, to: '#' })) ?? []}
+        renderItem={renderNavItem}
+        showCloseButton={false}
+        showHomeButton={false}
+        isOpen={!isTablet}
+        includeHeaderHeight
+      >
+        <Main>
+          <div>
+            <Name>{title}</Name>
+            <ImageWrapper>
+              <HeroImage
+                src={
+                  mainImage
+                    ? `${process.env.REACT_APP_STORAGE_URL}/${mainImage}`
+                    : require('../../assets/male_placeholder.png')
+                }
+              />
+              <InfoTable info={infoTable} />
+            </ImageWrapper>
+            <Description>{description}</Description>
+            {article && (
+              <ReactMarkdown
+                components={{
+                  h2: ClickableHeader as FC,
+                  p: Paragraph as FC,
+                }}
+              >
+                {article}
+              </ReactMarkdown>
+            )}
+          </div>
+        </Main>
+      </ContentsLayout>
+    </MainLayout>
   );
 };
 

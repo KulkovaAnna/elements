@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { LIGHT_THEME_BACKGROUND } from 'constants/colors';
 import { OFFSET_DEFAULT_PLUS } from 'constants/offsets';
 
 export const CenteredContainer = styled.div({
@@ -12,7 +13,7 @@ export const CenteredContainer = styled.div({
   zIndex: 100,
   top: 0,
   left: 0,
-  backgroundColor: 'white',
+  backgroundColor: LIGHT_THEME_BACKGROUND,
 });
 
 export const Title404 = styled.p({
