@@ -5,10 +5,10 @@ import {
   IMAGE_BORDER_COLOR,
   LIGHT_THEME_BACKGROUND,
 } from 'constants/colors';
-import { CONTENT_FONT_FAMILY } from 'constants/font';
 import { MQ_TABLET } from 'constants/media';
 import { OFFSET_DEFAULT, OFFSET_SMALL } from 'constants/offsets';
 import { Link } from 'react-router-dom';
+import NotFinishedItem from '../NotFinishedItem';
 
 export const Container = styled.nav({
   display: 'flex',
@@ -33,19 +33,7 @@ export const MainBlock = styled.div({
   },
 });
 
-export const LinkItem = styled(Link)({
-  '&:hover': {
-    color: ACTIVE_LINK_COLOR,
-  },
-  fontFamily: CONTENT_FONT_FAMILY,
-  fontSize: 18,
-  padding: OFFSET_DEFAULT,
-  lineHeight: 1,
-  display: 'flex',
-  alignItems: 'center',
-});
-
-export const ReadLink = styled(LinkItem)({
+export const ReadLink = styled(NotFinishedItem)({
   fontSize: 22,
   fontWeight: 600,
 });

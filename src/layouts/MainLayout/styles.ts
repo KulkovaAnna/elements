@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Header } from 'components';
+import { Header } from './components';
 
 export const Container = styled.div({});
 

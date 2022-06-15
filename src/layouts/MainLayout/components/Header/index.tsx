@@ -1,10 +1,10 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { MENU_ICON_COLOR } from 'constants/colors';
 import React, { FC, useEffect, useState } from 'react';
-import { Contents } from './components';
+import Contents from '../Contents';
+import NotFinishedItem from '../NotFinishedItem';
 import {
   Container,
-  LinkItem,
   Logo,
   LogoLink,
   MainBlock,
@@ -33,7 +33,7 @@ const Header: FC<Props> = (props) => {
         onClick={changeMenuState}
       />
       <LogoLink to="/">
-        <Logo src={require('../../assets/logo.png')} alt="logo" />
+        <Logo src={require('../../../../assets/logo.png')} alt="logo" />
       </LogoLink>
       <Contents
         isOpen={menuIsOpened}
@@ -46,11 +46,15 @@ const Header: FC<Props> = (props) => {
         }}
       />
       <MainBlock>
-        <LinkItem to="#">Бестиарий</LinkItem>
-        <LinkItem to="/characters">Персонажи</LinkItem>
-        <ReadLink to="/contents">Читать</ReadLink>
-        <LinkItem to="#">История</LinkItem>
-        <LinkItem to="#">Локации</LinkItem>
+        <NotFinishedItem to="#">Бестиарий</NotFinishedItem>
+        <NotFinishedItem to="/characters" finished>
+          Персонажи
+        </NotFinishedItem>
+        <ReadLink to="/contents" finished>
+          Читать
+        </ReadLink>
+        <NotFinishedItem to="#">История</NotFinishedItem>
+        <NotFinishedItem to="#">Локации</NotFinishedItem>
       </MainBlock>
       <div />
     </Container>
