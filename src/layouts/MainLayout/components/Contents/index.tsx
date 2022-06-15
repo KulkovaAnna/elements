@@ -1,7 +1,7 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import NotFinishedItem from '../NotFinishedItem';
 import { CloseButton, ListItem, MainList, Navigation } from './styles';
 
 export interface ContentsProps
@@ -29,19 +29,23 @@ const Contents: FC<ContentsProps> = ({
       </CloseButton>
       <MainList>
         <ListItem>
-          <Link to="#">Бестиарий</Link>
+          <NotFinishedItem to="#">Бестиарий</NotFinishedItem>
         </ListItem>
         <ListItem onClick={onCloseClick}>
-          <Link to="/characters">Персонажи</Link>
+          <NotFinishedItem to="/characters" finished>
+            Персонажи
+          </NotFinishedItem>
         </ListItem>
         <ListItem>
-          <Link to="/contents">Читать</Link>
+          <NotFinishedItem to="/contents" finished>
+            Читать
+          </NotFinishedItem>
         </ListItem>
         <ListItem>
-          <Link to="#">История</Link>
+          <NotFinishedItem to="#">История</NotFinishedItem>
         </ListItem>
         <ListItem>
-          <Link to="#">Локации</Link>
+          <NotFinishedItem to="#">Локации</NotFinishedItem>
         </ListItem>
       </MainList>
     </Navigation>

@@ -1,4 +1,4 @@
-import { useHeaderHeight } from 'components/Header';
+import { useHeaderHeight } from 'layouts';
 import React, { FC } from 'react';
 import { Container, FixedHeader, Children } from './styles';
 

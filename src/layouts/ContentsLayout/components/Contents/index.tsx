@@ -1,6 +1,6 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useHeaderHeight } from 'components/Header';
+import { useHeaderHeight } from 'layouts';
 import { OFFSET_SMALL } from 'constants/offsets';
 import React, { FC, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
