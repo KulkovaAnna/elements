@@ -1,5 +1,6 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { MENU_ICON_COLOR } from 'constants/colors';
+import { MENU_ICON_COLOR } from '@/constants/colors';
+import Link from 'next/link';
 import React, { FC, useEffect, useState } from 'react';
 import Contents from '../Contents';
 import NotFinishedItem from '../NotFinishedItem';
@@ -32,9 +33,11 @@ const Header: FC<Props> = (props) => {
         color={MENU_ICON_COLOR}
         onClick={changeMenuState}
       />
-      <LogoLink to="/">
-        <Logo src={require('../../../../assets/logo.png')} alt="logo" />
-      </LogoLink>
+      <Link href="/">
+        <LogoLink>
+          <Logo src="/logo.png" alt="logo" />
+        </LogoLink>
+      </Link>
       <Contents
         isOpen={menuIsOpened}
         onCloseClick={changeMenuState}
@@ -46,15 +49,15 @@ const Header: FC<Props> = (props) => {
         }}
       />
       <MainBlock>
-        <NotFinishedItem to="#">Бестиарий</NotFinishedItem>
-        <NotFinishedItem to="/characters" finished>
+        <NotFinishedItem href="/bestiary">Бестиарий</NotFinishedItem>
+        <NotFinishedItem href="/characters" finished>
           Персонажи
         </NotFinishedItem>
-        <ReadLink to="/contents" finished>
+        <ReadLink href="/chapters/1" finished>
           Читать
         </ReadLink>
-        <NotFinishedItem to="#">История</NotFinishedItem>
-        <NotFinishedItem to="#">Локации</NotFinishedItem>
+        <NotFinishedItem href="/lore">История</NotFinishedItem>
+        <NotFinishedItem href="/locations">Локации</NotFinishedItem>
       </MainBlock>
       <div />
     </Container>
@@ -64,8 +67,10 @@ const Header: FC<Props> = (props) => {
 export function useHeaderHeight() {
   const [headerHeight, setHeaderHeight] = useState(0);
   useEffect(() => {
-    const header = document.querySelector('#main-header');
-    setHeaderHeight(header?.clientHeight ?? 0);
+    if (document) {
+      const header = document.querySelector('#main-header');
+      setHeaderHeight(header?.clientHeight ?? 0);
+    }
   }, []);
   return headerHeight;
 }

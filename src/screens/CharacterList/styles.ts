@@ -1,11 +1,11 @@
-import styled from '@emotion/styled';
 import {
   ACTIVE_LINK_COLOR,
   CONTENTS_BACKGROUND_COLOR,
   IMAGE_BORDER_COLOR,
-} from 'constants/colors';
-import { OFFSET_SMALL } from 'constants/offsets';
-import { WIDTH_ARTICLE } from 'constants/sizes';
+} from '@/constants/colors';
+import { OFFSET_SMALL } from '@/constants/offsets';
+import { WIDTH_ARTICLE } from '@/constants/sizes';
+import styled from '@emotion/styled';
 
 const IMAGE_SIZE = 160;
 

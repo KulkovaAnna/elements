@@ -1,6 +1,6 @@
+import { LIGHT_THEME_BACKGROUND } from '@/constants/colors';
+import { OFFSET_DEFAULT_PLUS } from '@/constants/offsets';
 import styled from '@emotion/styled';
-import { LIGHT_THEME_BACKGROUND } from 'constants/colors';
-import { OFFSET_DEFAULT_PLUS } from 'constants/offsets';
 
 export const CenteredContainer = styled.div({
   width: '100vw',

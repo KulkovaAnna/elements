@@ -1,4 +1,10 @@
-import React, { FC, MouseEventHandler, useCallback } from 'react';
+import React, {
+  FC,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 interface Props {
   children: string | JSX.Element | JSX.Element[];
   href: string;
@@ -6,8 +12,13 @@ interface Props {
 }
 
 const Anchor: FC<Props> = ({ children, href, onClick }) => {
+  const [element, setElement] = useState<HTMLAnchorElement | null>(null);
+  useEffect(() => {
+    if (document) {
+      setElement(document?.querySelector<HTMLAnchorElement>(href));
+    }
+  }, []);
   const handleClick: MouseEventHandler<HTMLAnchorElement> = useCallback(() => {
-    const element: HTMLElement | null = document.querySelector(href);
     if (element) {
       element.tabIndex = -1;
       element.focus();

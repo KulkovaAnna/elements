@@ -5,16 +5,16 @@ import {
   CONTENTS_BACKGROUND_COLOR,
   IMAGE_BORDER_COLOR,
   LIGHT_THEME_BACKGROUND,
-} from 'constants/colors';
-import { CONTENT_FONT_FAMILY } from 'constants/font';
-import { MQ_MOBILE, MQ_TABLET } from 'constants/media';
+} from '@/constants/colors';
+import { CONTENT_FONT_FAMILY } from '@/constants/font';
+import { MQ_MOBILE, MQ_TABLET } from '@/constants/media';
 import {
   OFFSET_BIG,
   OFFSET_DEFAULT,
   OFFSET_MEDIUM,
   OFFSET_SMALL,
   OFFSET_SMALL_PLUS,
-} from 'constants/offsets';
+} from '@/constants/offsets';
 
 type WithMainProps = {
   main?: boolean;
@@ -31,7 +31,7 @@ export const Main = styled.article({
   },
 });
 
-export const ImageWrapper = styled.div<WithMainProps>(() => ({
+export const HeroInfo = styled.div<WithMainProps>(() => ({
   justifyContent: 'initial',
   margin: `0 0 ${OFFSET_SMALL}px ${OFFSET_MEDIUM}px`,
   padding: OFFSET_SMALL,
@@ -48,6 +48,15 @@ export const ImageWrapper = styled.div<WithMainProps>(() => ({
   },
 }));
 
+export const ImageWrapper = styled.div({
+  maxWidth: '100%',
+  maxHeight: '100%',
+  position: 'relative',
+  borderRadius: 5,
+  border: `1px solid ${IMAGE_BORDER_COLOR}`,
+  overflow: 'hidden',
+});
+
 export const Name = styled.p({
   gridArea: 'name',
   fontSize: '8vmax',
@@ -59,14 +68,6 @@ export const Name = styled.p({
   [MQ_TABLET]: {
     borderBottom: '1px solid rgba(0, 0 , 0, 0.1)',
   },
-});
-
-export const HeroImage = styled.img({
-  maxWidth: '100%',
-  maxHeight: '100%',
-  objectFit: 'cover',
-  borderRadius: 5,
-  border: `1px solid ${IMAGE_BORDER_COLOR}`,
 });
 
 export const Description = styled.span({

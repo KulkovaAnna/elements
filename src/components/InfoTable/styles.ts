@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { OFFSET_TINY } from 'constants/offsets';
+import { OFFSET_TINY } from '@/constants/offsets';
 
 export const Container = styled.ul({
   width: '100%',

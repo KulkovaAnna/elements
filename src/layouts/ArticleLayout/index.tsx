@@ -1,21 +1,21 @@
-import { Anchor, InfoTable } from 'components';
-import useDimension from 'hooks/useDimension';
-import ContentsLayout, { ContentsItem } from 'layouts/ContentsLayout';
-import MainLayout from 'layouts/MainLayout';
+import { Anchor, InfoTable } from '@/components';
+import useDimension from '@/hooks/useDimension';
+import ContentsLayout, { ContentsItem } from '@/layouts/ContentsLayout';
+import MainLayout from '@/layouts/MainLayout';
 import React, { FC, useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { useLocation } from 'react-router-dom';
-import { getHeaders } from 'utils/articles';
+import { getHeaders } from '@/utils/articles';
 import { ClickableHeader } from './components';
 import {
   Description,
-  HeroImage,
+  HeroInfo,
   ImageWrapper,
   ListItem,
   Main,
   Name,
   Paragraph,
 } from './styles';
+import Image from 'next/image';
 
 type Props = {
   title: string;
@@ -34,28 +34,27 @@ const ArticleLayout: FC<Props> = ({
 }) => {
   const [headerIds, setHeaderIds] = useState<string[]>([]);
 
-  const { hash } = useLocation();
-
   const navs = getHeaders(article ?? '', '##');
 
   const { isTablet } = useDimension();
 
   useEffect(() => {
-    const headers = document.querySelectorAll('.article-header');
-    if (!headerIds.length && navs?.length) {
-      setHeaderIds(Array.from(headers).map((elem) => elem.id));
+    if (document) {
+      const headers = document?.querySelectorAll('.article-header');
+      if (!headerIds.length && navs?.length) {
+        setHeaderIds(Array.from(headers).map((elem) => elem.id));
+      }
     }
   }, [headerIds.length, navs]);
 
   const renderNavItem = (item: ContentsItem, index: number) => {
     const href = `#${headerIds[index]}`;
     return (
-      <ListItem key={index} selected={href === hash}>
+      <ListItem key={index}>
         <Anchor href={href}>{item.title}</Anchor>
       </ListItem>
     );
   };
-
   return (
     <MainLayout>
       <ContentsLayout
@@ -69,16 +68,23 @@ const ArticleLayout: FC<Props> = ({
         <Main>
           <div>
             <Name>{title}</Name>
-            <ImageWrapper>
-              <HeroImage
-                src={
-                  mainImage
-                    ? `${process.env.REACT_APP_STORAGE_URL}/${mainImage}`
-                    : require('../../assets/male_placeholder.png')
-                }
-              />
+            <HeroInfo id="wrapper">
+              <ImageWrapper>
+                <Image
+                  layout="responsive"
+                  width="100%"
+                  height="100%"
+                  objectFit="cover"
+                  src={
+                    mainImage
+                      ? `${process.env.STORAGE_URL}/${mainImage}`
+                      : '/male_placeholder.png'
+                  }
+                />
+              </ImageWrapper>
+
               <InfoTable info={infoTable} />
-            </ImageWrapper>
+            </HeroInfo>
             <Description>{description}</Description>
             {article && (
               <ReactMarkdown

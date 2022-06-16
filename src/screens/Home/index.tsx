@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import { MainLayout } from 'layouts';
+import { MainLayout } from '@/layouts';
 import { Container } from './styles';
 
 type Props = Record<string, never>;
 
-const HomePage: FC<Props> = () => {
+const HomeScreen: FC<Props> = () => {
   return (
     <MainLayout>
       <Container>Однажды тут будет контент...</Container>
@@ -12,4 +12,4 @@ const HomePage: FC<Props> = () => {
   );
 };
 
-export default HomePage;
+export default HomeScreen;

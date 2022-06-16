@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { NavHeader } from 'components';
-import { OFFSET_SMALL_PLUS } from 'constants/offsets';
+import { NavHeader } from '@/components';
+import { OFFSET_SMALL_PLUS } from '@/constants/offsets';
 
 export const Container = styled.div({
   display: 'flex',

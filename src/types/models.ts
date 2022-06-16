@@ -79,3 +79,16 @@ export type Chapter = {
   title?: string;
   content?: string;
 };
+
+export type Content = {
+  chapters: Chapter[];
+  total: number;
+  nextOrder: number | null;
+};
+
+export type NthChapter = {
+  chapter: Chapter;
+  prev: number;
+  next: number;
+  total: number;
+};

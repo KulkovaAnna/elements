@@ -1,14 +1,13 @@
+import { ACTIVE_LINK_COLOR } from '@/constants/colors';
+import { CONTENT_FONT_FAMILY } from '@/constants/font';
+import { OFFSET_DEFAULT } from '@/constants/offsets';
 import styled from '@emotion/styled';
-import { ACTIVE_LINK_COLOR } from 'constants/colors';
-import { CONTENT_FONT_FAMILY } from 'constants/font';
-import { OFFSET_DEFAULT } from 'constants/offsets';
-import { Link } from 'react-router-dom';
 
 type TListItem = {
   inProgress?: boolean;
 };
 
-export const LinkItem = styled(Link)<TListItem>(({ inProgress }) => ({
+export const LinkItem = styled.a<TListItem>(({ inProgress }) => ({
   '&:hover': {
     color: inProgress ? 'initial' : ACTIVE_LINK_COLOR,
   },

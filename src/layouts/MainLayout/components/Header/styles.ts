@@ -4,10 +4,9 @@ import {
   ACTIVE_LINK_COLOR,
   IMAGE_BORDER_COLOR,
   LIGHT_THEME_BACKGROUND,
-} from 'constants/colors';
-import { MQ_TABLET } from 'constants/media';
-import { OFFSET_DEFAULT, OFFSET_SMALL } from 'constants/offsets';
-import { Link } from 'react-router-dom';
+} from '@/constants/colors';
+import { MQ_TABLET } from '@/constants/media';
+import { OFFSET_DEFAULT, OFFSET_SMALL } from '@/constants/offsets';
 import NotFinishedItem from '../NotFinishedItem';
 
 export const Container = styled.nav({
@@ -38,7 +37,7 @@ export const ReadLink = styled(NotFinishedItem)({
   fontWeight: 600,
 });
 
-export const LogoLink = styled(Link)({
+export const LogoLink = styled.a({
   left: OFFSET_DEFAULT,
   display: 'flex',
   alignItems: 'center',

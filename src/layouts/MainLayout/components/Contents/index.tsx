@@ -29,23 +29,23 @@ const Contents: FC<ContentsProps> = ({
       </CloseButton>
       <MainList>
         <ListItem>
-          <NotFinishedItem to="#">Бестиарий</NotFinishedItem>
+          <NotFinishedItem href="/bestiary">Бестиарий</NotFinishedItem>
         </ListItem>
         <ListItem onClick={onCloseClick}>
-          <NotFinishedItem to="/characters" finished>
+          <NotFinishedItem href="/characters" finished>
             Персонажи
           </NotFinishedItem>
         </ListItem>
         <ListItem>
-          <NotFinishedItem to="/contents" finished>
+          <NotFinishedItem href="/chapters/1" finished>
             Читать
           </NotFinishedItem>
         </ListItem>
         <ListItem>
-          <NotFinishedItem to="#">История</NotFinishedItem>
+          <NotFinishedItem href="/lore">История</NotFinishedItem>
         </ListItem>
         <ListItem>
-          <NotFinishedItem to="#">Локации</NotFinishedItem>
+          <NotFinishedItem href="/locations">Локации</NotFinishedItem>
         </ListItem>
       </MainList>
     </Navigation>
