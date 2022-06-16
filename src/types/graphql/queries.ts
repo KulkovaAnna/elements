@@ -1,4 +1,5 @@
-import { Chapter, Character, Role } from 'types/models';
+import { Character, NthChapter, Role } from '@/types/models';
+import { Content } from '../models';
 
 type GetByIdInput = {
   id: number;
@@ -29,20 +30,11 @@ export type GetCharacterByIdResponse = {
 export type GetChaptersInput = PaginationInput<number>;
 
 export type GetChaptersResponse = {
-  getChapters: {
-    chapters: Chapter[];
-    total: number;
-    nextOrder: number | null;
-  };
+  getChapters: Content;
 };
 
 export type GetChapterByOrderResponse = {
-  getNthChapter: {
-    chapter: Chapter;
-    prev: number;
-    next: number;
-    total: number;
-  };
+  getNthChapter: NthChapter;
 };
 
 export type GetChapterByOrderInput = {

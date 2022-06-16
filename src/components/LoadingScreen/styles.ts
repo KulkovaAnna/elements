@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { MENU_ICON_COLOR } from 'constants/colors';
+import { MENU_ICON_COLOR } from '@/constants/colors';
 
 export const CenteredContainer = styled.div({
   display: 'flex',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import useDimension from 'hooks/useDimension';
+import useDimension from '@/hooks/useDimension';
 import { FC, useState, useCallback, useEffect } from 'react';
 import { TitleWrapper, Title, ChevronIcon } from '../styles';
 
@@ -18,14 +18,20 @@ type HeaderProps = {
 const ClickableHeader: FC<HeaderProps> = ({ children, node }) => {
   const { isTablet } = useDimension();
   const [chevronOpened, setChevronOpened] = useState(!isTablet);
+  const [siblings, setSiblings] = useState<NodeListOf<HTMLElement>>();
 
   const id = node.position.start.offset.toString();
   const chevron = chevronOpened ? solid('chevron-down') : solid('chevron-up');
-  const siblings = document.querySelectorAll<HTMLElement>(`#header-${id} ~ *`);
+
+  useEffect(() => {
+    if (document) {
+      setSiblings(document.querySelectorAll<HTMLElement>(`#header-${id} ~ *`));
+    }
+  }, []);
 
   const changeParagraphsDisplay = useCallback(
     (val: 'none' | 'block') => {
-      for (const elem of Array.from(siblings)) {
+      for (const elem of Array.from(siblings ?? [])) {
         if (elem.nodeName === 'P') {
           elem.style.display = val;
         } else {

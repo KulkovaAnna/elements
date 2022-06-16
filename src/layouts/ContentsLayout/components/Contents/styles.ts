@@ -1,14 +1,13 @@
-import styled from '@emotion/styled';
 import {
   ACTIVE_LINK_COLOR,
   CONTENTS_BACKGROUND_COLOR,
   LIGHT_THEME_BACKGROUND,
   MENU_ICON_COLOR,
-} from 'constants/colors';
-import { CONTENT_FONT_FAMILY } from 'constants/font';
-import { MQ_MOBILE, MQ_TABLET } from 'constants/media';
-import { OFFSET_BIG, OFFSET_DEFAULT } from 'constants/offsets';
-import { Link } from 'react-router-dom';
+} from '@/constants/colors';
+import { CONTENT_FONT_FAMILY } from '@/constants/font';
+import { MQ_MOBILE, MQ_TABLET } from '@/constants/media';
+import { OFFSET_BIG, OFFSET_DEFAULT } from '@/constants/offsets';
+import styled from '@emotion/styled';
 
 interface IListItem {
   selected?: boolean;
@@ -99,7 +98,7 @@ export const CloseButton = styled.button<INavigation>(({ opened }) => ({
 
 export const HomeBlock = styled.div({
   width: '100%',
-  borderBottom: '1px solid rgba(0,0,0, 0.1)',
+  borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
   padding: `${OFFSET_DEFAULT}px ${OFFSET_BIG}px`,
   display: 'flex',
   alignItems: 'center',
@@ -118,7 +117,7 @@ export const HomeBlock = styled.div({
   },
 });
 
-export const HomeBlockLeft = styled(Link)({
+export const HomeBlockLeft = styled.a({
   display: 'flex',
   alignItems: 'center',
   '&:hover *': {

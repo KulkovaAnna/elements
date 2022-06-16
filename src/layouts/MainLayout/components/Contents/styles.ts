@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
-import { ACTIVE_LINK_COLOR, CONTENTS_BACKGROUND_COLOR } from 'constants/colors';
-import { CONTENT_FONT_FAMILY } from 'constants/font';
-import { MQ_MOBILE, MQ_TABLET } from 'constants/media';
-import { OFFSET_BIG, OFFSET_DEFAULT } from 'constants/offsets';
-import { Link } from 'react-router-dom';
+import {
+  ACTIVE_LINK_COLOR,
+  CONTENTS_BACKGROUND_COLOR,
+} from '@/constants/colors';
+import { MQ_MOBILE, MQ_TABLET } from '@/constants/media';
+import { OFFSET_BIG, OFFSET_DEFAULT } from '@/constants/offsets';
+import Link from 'next/link';
 
 interface IListItem {
   selected?: boolean;
@@ -51,20 +53,14 @@ export const BottomList = styled.ul({
   transition: '0.3s ease all',
 });
 
-export const ListItem = styled.li<IListItem>(({ selected }) => ({
+export const ListItem = styled.li<IListItem>({
   width: '100%',
   listStyle: 'none',
-  fontFamily: CONTENT_FONT_FAMILY,
-  fontSize: 18,
   paddingBottom: OFFSET_DEFAULT,
-  fontWeight: selected ? 'bold' : 'initial',
-  '&:hover, &:hover *': {
-    color: ACTIVE_LINK_COLOR,
-  },
   '&:last-child': {
     paddingBottom: 0,
   },
-}));
+});
 
 export const CloseButton = styled.div({
   position: 'absolute',

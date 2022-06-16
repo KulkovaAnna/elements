@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { CONTENT_FONT_FAMILY } from 'constants/font';
-import { Link as ReactLink } from 'react-router-dom';
+import { CONTENT_FONT_FAMILY } from '@/constants/font';
+import NextLink from 'next/link';
 
 export const Container = styled.div({
   display: 'flex',
@@ -10,7 +10,7 @@ export const Container = styled.div({
   },
 });
 
-export const Link = styled(ReactLink)({
+export const Link = styled(NextLink)({
   ':hover': {
     color: '#4c609c',
   },

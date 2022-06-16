@@ -1,18 +1,17 @@
-import styled from '@emotion/styled';
 import {
   ACTIVE_LINK_COLOR,
   LIGHT_THEME_BACKGROUND,
   MENU_ICON_COLOR,
-} from 'constants/colors';
-import { MQ_TABLET } from 'constants/media';
+} from '@/constants/colors';
+import { MQ_TABLET } from '@/constants/media';
 import {
   OFFSET_BIG,
   OFFSET_SMALL,
   OFFSET_SMALL_PLUS,
   OFFSET_TINY,
-} from 'constants/offsets';
-import { WIDTH_ARTICLE } from 'constants/sizes';
-import { Link } from 'react-router-dom';
+} from '@/constants/offsets';
+import { WIDTH_ARTICLE } from '@/constants/sizes';
+import styled from '@emotion/styled';
 
 export const Container = styled.div({
   display: 'flex',
@@ -74,7 +73,7 @@ export const Navigation = styled.div({
   },
 });
 
-export const MenuLink = styled(Link)({
+export const MenuLink = styled.a({
   '*': {
     color: MENU_ICON_COLOR,
     '&:active *': {

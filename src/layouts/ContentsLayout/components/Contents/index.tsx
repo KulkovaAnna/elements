@@ -1,9 +1,9 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useHeaderHeight } from 'layouts';
-import { OFFSET_SMALL } from 'constants/offsets';
+import { useHeaderHeight } from '@/layouts';
+import { OFFSET_SMALL } from '@/constants/offsets';
 import React, { FC, useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import {
   BottomList,
   CloseButton,
@@ -67,14 +67,17 @@ const Contents: FC<ContentsProps> = ({
     >
       {showHomeButton && (
         <HomeBlock>
-          <HomeBlockLeft to="/">
-            <FontAwesomeIcon
-              icon={solid('chevron-left')}
-              size="1x"
-              style={{ marginRight: OFFSET_SMALL }}
-            />
-            <ListItem style={{ padding: 0 }}>На главную</ListItem>
-          </HomeBlockLeft>
+          <Link href="/">
+            <HomeBlockLeft>
+              <FontAwesomeIcon
+                icon={solid('chevron-left')}
+                size="1x"
+                style={{ marginRight: OFFSET_SMALL }}
+              />
+              <ListItem style={{ padding: 0 }}>На главную</ListItem>
+            </HomeBlockLeft>
+          </Link>
+
           <FontAwesomeIcon
             icon={solid('close')}
             size="1x"
@@ -92,7 +95,7 @@ const Contents: FC<ContentsProps> = ({
                   selected={index === selectedIndex}
                   onClick={onItemClick}
                 >
-                  <Link style={{ display: 'flex' }} to={header.to}>
+                  <Link style={{ display: 'flex' }} href={header.to}>
                     {header.title}
                   </Link>
                 </ListItem>
