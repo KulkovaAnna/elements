@@ -1,4 +1,4 @@
-import { Character, NthChapter, Role } from '@/types/models';
+import { Chapter, Character, NthChapter, Role } from '@/types/models';
 import { Content } from '../models';
 
 type GetByIdInput = {
@@ -40,3 +40,9 @@ export type GetChapterByOrderResponse = {
 export type GetChapterByOrderInput = {
   order: number;
 };
+
+export type GetChapterByIdResponse = {
+  getChapterById: NthChapter;
+};
+
+export type GetChapterByIdInput = GetByIdInput;

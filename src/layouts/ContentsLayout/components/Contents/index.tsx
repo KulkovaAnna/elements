@@ -13,6 +13,7 @@ import {
   MainList,
   Navigation,
 } from './styles';
+import { useTranslation } from 'next-i18next';
 
 export type ContentsItem = { title: string; to: string };
 
@@ -50,6 +51,7 @@ const Contents: FC<ContentsProps> = ({
     onCloseButtonClick?.();
   }, [opened]);
   const headerHeight = useHeaderHeight();
+  const { t } = useTranslation('common');
   return (
     <Navigation
       onTouchStart={(event) => setStartTouch(event.changedTouches[0].clientX)}
@@ -74,7 +76,7 @@ const Contents: FC<ContentsProps> = ({
                 size="1x"
                 style={{ marginRight: OFFSET_SMALL }}
               />
-              <ListItem style={{ padding: 0 }}>На главную</ListItem>
+              <ListItem style={{ padding: 0 }}>{t('onTheMain')}</ListItem>
             </HomeBlockLeft>
           </Link>
 
@@ -104,8 +106,8 @@ const Contents: FC<ContentsProps> = ({
         )}
       </MainList>
       <BottomList>
-        <ListItem>Скачать как PDF</ListItem>
-        <ListItem>Версия для печати</ListItem>
+        <ListItem>{t('downloadPDF')}</ListItem>
+        <ListItem>{t('printVersion')}</ListItem>
       </BottomList>
       {showCloseButton && (
         <CloseButton onClick={handleButtonClick} opened={opened}>

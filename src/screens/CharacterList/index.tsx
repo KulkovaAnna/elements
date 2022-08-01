@@ -1,5 +1,6 @@
 import { MainLayout } from '@/layouts';
-import { Character, Role } from '@/types/models';
+import { Character, Role, Sex } from '@/types/models';
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import React, { FC } from 'react';
 import {
@@ -24,6 +25,7 @@ type Props = {
 };
 
 const CharacterList: FC<Props> = ({ characters }) => {
+  const { t } = useTranslation('role');
   const heroes = characters.reduce<Heroes>(
     (acc, item) => {
       if (item.role) {
@@ -43,7 +45,7 @@ const CharacterList: FC<Props> = ({ characters }) => {
         <Block>
           {Object.entries(heroes).map(([role, arr]) => (
             <div key={role}>
-              {!!arr.length && <Title>{role}</Title>}
+              {!!arr.length && <Title>{t(role)}</Title>}
               <List>
                 {arr.map((hero) => (
                   <ListItem key={hero.id}>
@@ -51,7 +53,13 @@ const CharacterList: FC<Props> = ({ characters }) => {
                       <a>
                         <ImageWrapper>
                           <Image
-                            src={`${process.env.STORAGE_URL}${hero.thumbnail_image}`}
+                            src={
+                              hero.thumbnail_image
+                                ? `${process.env.STORAGE_URL}${hero.thumbnail_image}`
+                                : hero.sex === Sex.female
+                                ? '/female_placeholder.png'
+                                : '/male_placeholder.png'
+                            }
                           />
                         </ImageWrapper>
                         <Name>{hero.name}</Name>

@@ -1,6 +1,7 @@
 import { ArticleLayout } from '@/layouts';
-import { Character } from '@/types/models';
+import { Character, Sex } from '@/types/models';
 import { getHeaders } from '@/utils/articles';
+import { useTranslation } from 'next-i18next';
 import React, { FC, useEffect, useState } from 'react';
 
 type Props = {
@@ -10,6 +11,9 @@ type Props = {
 const CharacterScreen: FC<Props> = ({ heroInfo }) => {
   const [headerIds, setHeaderIds] = useState<string[]>([]);
   const navs = getHeaders(heroInfo?.story ?? '', '##');
+  const { t: raceT } = useTranslation('race');
+  const { t: sexT } = useTranslation('sex');
+  const { t: relT } = useTranslation('relationships');
 
   useEffect(() => {
     if (document) {
@@ -25,10 +29,16 @@ const CharacterScreen: FC<Props> = ({ heroInfo }) => {
       article={heroInfo?.story ?? ''}
       title={heroInfo?.name ?? ''}
       description={heroInfo?.description}
-      mainImage={heroInfo?.hero_image}
+      mainImage={
+        heroInfo.hero_image
+          ? `${process.env.STORAGE_URL}${heroInfo.hero_image}`
+          : heroInfo.sex === Sex.female
+          ? '/female_placeholder.png'
+          : '/male_placeholder.png'
+      }
       infoTable={[
-        { title: 'Пол', value: heroInfo?.sex ?? '?' },
-        { title: 'Раса', value: heroInfo?.race ?? '?' },
+        { title: 'Пол', value: sexT(heroInfo?.sex ?? 'unknown') },
+        { title: 'Раса', value: raceT(heroInfo?.race ?? 'unknown') },
         {
           title: 'Годы жизни',
           value: `${heroInfo?.birth_date ?? '?'} - ${
@@ -36,7 +46,7 @@ const CharacterScreen: FC<Props> = ({ heroInfo }) => {
           }`,
         },
         ...(heroInfo?.family?.map((relative) => ({
-          title: relative.related_as as string,
+          title: relT(relative.related_as as string),
           value: relative.name ?? '?',
         })) ?? []),
       ]}

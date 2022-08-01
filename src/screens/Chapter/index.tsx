@@ -29,7 +29,7 @@ const ChapterScreen: FC<Props> = ({ contents, currentChapter }) => {
   const currentChapterIndex = useMemo(
     () =>
       chapters.findIndex(
-        (chapter) => chapter.order === currentChapter.chapter.order
+        (chapter) => chapter.id === currentChapter.chapter?.id
       ),
     [chapters]
   );
@@ -38,7 +38,7 @@ const ChapterScreen: FC<Props> = ({ contents, currentChapter }) => {
     () =>
       chapters.map((chapter) => ({
         title: chapter.title ?? '',
-        to: `/chapters/${chapter.order}`,
+        to: `/chapters/${chapter.id}`,
       })) ?? [],
     [chapters]
   );

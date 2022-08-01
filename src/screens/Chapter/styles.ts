@@ -26,6 +26,7 @@ export const Container = styled.div({
 export const Block = styled.div({
   position: 'relative',
   maxWidth: WIDTH_ARTICLE,
+  width: '100%',
 });
 
 export const Paragraph = styled.p({
