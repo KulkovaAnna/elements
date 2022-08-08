@@ -1,0 +1,23 @@
+{
+  "aunt": "Тётя",
+  "brother": "Брат",
+  "daughter": "Дочь",
+  "father": "Отец",
+  "granddaughter": "Внучка",
+  "grandfather": "Дедушка",
+  "grandmother": "Бабушка",
+  "grandson": "Внук",
+  "husband": "Муж",
+  "mother": "Мать",
+  "nephew": "Племянник",
+  "niece": "Племянница",
+  "sister": "Сестра",
+  "son": "Сын",
+  "stepdaughter": "Падчерица",
+  "stepfather": "Отчим",
+  "stepmother": "Мачеха",
+  "stepson": "Пасынок",
+  "uncle": "Дядя",
+  "wife": "Жена",
+  "unknown": "Неизвестно"
+}

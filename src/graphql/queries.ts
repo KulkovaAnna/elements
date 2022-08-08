@@ -7,6 +7,7 @@ export const GET_CHARACTERS_FOR_CONTENTS = gql`
       name
       thumbnail_image
       role
+      sex
     }
   }
 `;
@@ -49,6 +50,22 @@ export const GET_CONTENTS = gql`
 export const GET_CHAPTER_BY_ORDER = gql`
   query getNthChapter($order: Int!) {
     getNthChapter(order: $order) {
+      chapter {
+        id
+        title
+        content
+        order
+      }
+      next
+      prev
+      total
+    }
+  }
+`;
+
+export const GET_CHAPTER_BY_ID = gql`
+  query getChapterById($id: Int!) {
+    getChapterById(id: $id) {
       chapter {
         id
         title

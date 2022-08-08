@@ -12,7 +12,14 @@ const MainLayout: FC<Props> = ({ children }) => {
   return (
     <Container>
       <FixedHeader />
-      <Children style={{ marginTop: headerHeight }}>{children}</Children>
+      <Children
+        style={{
+          marginTop: headerHeight,
+          height: `calc(100vh - ${headerHeight ?? 0}px)`,
+        }}
+      >
+        {children}
+      </Children>
     </Container>
   );
 };

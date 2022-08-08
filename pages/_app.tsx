@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import './app.css';
 import { useRouter } from 'next/router';
 import LoadingScreen from '@/components/LoadingScreen';
+import { appWithTranslation } from 'next-i18next';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -31,4 +32,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

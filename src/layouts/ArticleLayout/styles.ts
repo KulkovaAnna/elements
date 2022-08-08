@@ -26,6 +26,7 @@ type ListItemProps = {
 
 export const Main = styled.article({
   padding: `0 ${OFFSET_BIG}px`,
+  width: '100%',
   [MQ_TABLET]: {
     padding: OFFSET_DEFAULT,
   },
