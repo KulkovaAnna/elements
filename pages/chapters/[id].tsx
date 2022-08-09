@@ -9,7 +9,7 @@ import {
 import { Content, NthChapter } from '@/types/models';
 import { SSRConfig } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { GetServerSideProps } from 'next/types';
+import { GetStaticPaths, GetStaticProps } from 'next/types';
 import React, { FC } from 'react';
 
 interface Props extends SSRConfig {
@@ -28,7 +28,17 @@ const Chapter: FC<Props> = ({ contents, currentChapter }) => {
 
 export default Chapter;
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await client.query<GetChaptersResponse>({
+    query: GET_CONTENTS,
+  });
+  return {
+    paths: data.getChapters?.chapters?.map((ch) => `/chapters/${ch.id}`),
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps: GetStaticProps<Props> = async ({
   params,
   locale,
 }) => {
@@ -56,6 +66,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
         contents: chapters.getChapters,
         ...i18nConfig,
       },
+      revalidate: 10,
     };
   }
   return {

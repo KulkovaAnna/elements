@@ -1,12 +1,16 @@
 import client from '@/.apollo-clent';
-import { GET_CHARACTER_BY_ID } from '@/graphql/queries';
+import {
+  GET_CHARACTERS_FOR_CONTENTS,
+  GET_CHARACTER_BY_ID,
+} from '@/graphql/queries';
 import { CharacterScreen } from '@/screens';
 import {
   GetCharacterByIdInput,
   GetCharacterByIdResponse,
+  GetCharactersForContentsResponse,
 } from '@/types/graphql';
 import { Character as CharInfo } from '@/types/models';
-import { GetServerSideProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { SSRConfig } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { FC } from 'react';
@@ -25,7 +29,17 @@ const Character: FC<Props> = ({ heroInfo }) => {
 
 export default Character;
 
-export const getServerSideProps: GetServerSideProps<Props, Params> = async ({
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await client.query<GetCharactersForContentsResponse>({
+    query: GET_CHARACTERS_FOR_CONTENTS,
+  });
+  return {
+    fallback: 'blocking',
+    paths: data.getCharacters?.map((ch) => `/characters/${ch.id}`),
+  };
+};
+
+export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
   locale,
 }) => {
@@ -43,6 +57,7 @@ export const getServerSideProps: GetServerSideProps<Props, Params> = async ({
       };
     }
     return {
+      revalidate: 10,
       props: {
         heroInfo: data.getCharacterById,
         ...(await serverSideTranslations(locale ?? 'ru', [
